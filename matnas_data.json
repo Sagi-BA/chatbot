@@ -1,0 +1,74 @@
+{
+  "main_page": {
+    "title": "ברוכים הבאים למתנ\"ס",
+    "description": "היי, ברוכים הבאים למתנ\"ס העמק, באיזה עניין פניתם?",
+    "background_color": "#f0f8ff"
+  },
+  "main_buttons": [
+    { "name": "בריכה", "key": "pool" },
+    { "name": "אירועים והופעות", "key": "events" },
+    { "name": "מידע כללי", "key": "general_info" }
+  ],
+  "dialogs": {
+    "pool": {
+      "title": "בריכת השחייה",
+      "description": "ברוכים הבאים לבריכת השחייה שלנו! במה נוכל לעזור לכם?",
+      "background_color": "#e6f3ff",
+      "is_chatbot": true,
+      "system_prompt": "אתה מומחה בניהול בריכות ומומחה בתחום. עליך לענות על שאלות בנוגע לבריכה, כולל זמני פתיחה, מחירים, וחוגים.",
+      "buttons": [
+        {
+          "name": "זמני פתיחה",
+          "key": "opening_hours",
+          "images": ["pool_hours.jpeg"]
+        },
+        { "name": "מחירים", "key": "prices", "images": ["pool_prices.jpeg"] },
+        {
+          "name": "גלריה",
+          "key": "gallery",
+          "images": [
+            "pool_gallery1.jpeg",
+            "pool_gallery2.jpeg",
+            "pool_gallery3.jpeg",
+            "pool_gallery4.jpeg"
+          ]
+        }
+      ]
+    },
+    "events": {
+      "title": "אירועים והופעות",
+      "description": "מה תרצו לדעת על האירועים וההופעות הקרובים שלנו?",
+      "background_color": "#fff0e6",
+      "is_chatbot": true,
+      "system_prompt": "אתה מומחה בתכנון וארגון אירועים במתנ\"ס. עליך לענות על שאלות בנוגע לאירועים והופעות, כולל לוח אירועים רבעוני וגלריית תמונות.",
+      "buttons": [
+        {
+          "name": "לוח אירועים רבעוני",
+          "key": "quarterly_calendar_of_events",
+          "images": ["events_calendar.jpeg"]
+        },
+        {
+          "name": "גלריה",
+          "key": "gallery",
+          "images": ["events_gallery1.jpeg", "events_gallery2.jpeg"]
+        }
+      ]
+    },
+    "general_info": {
+      "title": "מידע כללי",
+      "description": "איזה מידע כללי על המתנ\"ס תרצו לקבל?",
+      "background_color": "#e6ffe6",
+      "is_chatbot": true,
+      "system_prompt": "אתה נציג שירות לקוחות של המתנ\"ס. עליך לספק מידע כללי על המתנ\"ס, כולל טלפונים, מחלקות, ומפת הגעה.",
+      "buttons": [
+        { "name": "טלפונים", "key": "phones", "images": ["info_phones.jpeg"] },
+        {
+          "name": "מחלקות",
+          "key": "departments",
+          "images": ["info_departments1.jpeg", "info_departments2.jpeg"]
+        },
+        { "name": "מפת הגעה", "key": "map", "images": ["info_map.jpeg"] }
+      ]
+    }
+  }
+}
