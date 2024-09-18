@@ -1,2 +1,6 @@
-/.env
-aviad_chatbot.code-workspace
+myenv
+*.code-workspace
+.env
+# Ignore all __pycache__ directories
+**/__pycache__/
+
