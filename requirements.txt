@@ -4,11 +4,7 @@ python-dotenv
 aiohttp #This is for telegram
 requests
 asyncio
-gradio_client
-deep_translator
 groq
-pillow
-webbrowser
 
 
 
