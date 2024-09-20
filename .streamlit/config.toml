@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 [ui]
 hideTopBar = true
 
 [theme]
 base = "white" 
+=======
+[server]
+maxUploadSize = 25
+
+[browser]
+gatherUsageStats = false
+>>>>>>> cf843ac87f150a36c84f6ee012b101151de31115
