@@ -6,5 +6,10 @@ requests
 asyncio
 groq
 
+PyMuPDF
+numpy
+
+
+
 
 

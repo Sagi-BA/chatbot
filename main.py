@@ -5,6 +5,7 @@ import base64
 from PIL import Image
 from streamlit_carousel import carousel
 from utils.chatbot import get_prompt
+from utils.PdfQAProcessor import PdfQAProcessor
 
 # פונקציה להגדרת עיצוב RTL
 def set_rtl_style():
@@ -106,7 +107,7 @@ def create_dialog(dialog_data):
             display_and_download_images(button["images"], button["name"])
 
 # פונקציה לניהול הצ'אט
-def manage_chat(chat_key, system_prompt):
+def manage_chat(chat_key, system_prompt, pdf_name):
     if chat_key not in st.session_state.chat_histories:
         st.session_state.chat_histories[chat_key] = []
     
@@ -125,17 +126,22 @@ def manage_chat(chat_key, system_prompt):
             st.markdown(prompt)
         
         # קבלת תשובה מה-AI
-        response = get_prompt(system_prompt, prompt)
+        # Initialize the processor
+        processor = PdfQAProcessor()
+
+        # Get the answer from the PDF
+        answer = processor.process_pdf_and_answer(pdf_name, prompt, system_prompt)
+
+        # response = get_prompt(system_prompt, prompt)
         
         # הוספת התשובה להיסטוריה
-        st.session_state.chat_histories[chat_key].append({"role": "assistant", "content": response})
+        st.session_state.chat_histories[chat_key].append({"role": "assistant", "content": answer})
         
         # הצגת התשובה
         with st.chat_message("assistant"):
-            st.markdown(response)
+            st.markdown(answer)
 
         st.rerun()
-
 
 def hide_streamlit_header_footer():
     hide_st_style = """
@@ -190,6 +196,6 @@ else:
     create_dialog(dialog_data)
     
     if dialog_data["is_chatbot"]:
-        manage_chat(st.session_state.current_page, dialog_data["system_prompt"])
+        manage_chat(st.session_state.current_page, dialog_data["system_prompt"], dialog_data["pdf_file"])
     else:
         st.write("זהו מסך מידע. אין כאן אפשרות לצ'אט.")
