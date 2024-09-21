@@ -1,31 +1,33 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;700&display=swap");
 
 :root {
-  --main-bg-color: #0c0d0e;
-  --secondary-bg-color: #1c1e22;
-  --text-color: #ffffff;
-  --accent-color: #4bb3fd;
+  --main-bg-color: #ffffff;
+  --secondary-bg-color: #09ba09;
+  --text-color: #000000;
+  --accent-color: #fd4b4b;
   --glow-color: #4bb3fd;
 }
 
 /* Streamlit-specific styles */
 .stApp {
   background-color: var(--main-bg-color);
+  color: var(--text-color) !important;
 }
 
 .streamlit-expanderHeader {
   background-color: white;
-  color: black;
+  color: var(--text-color) !important;
 }
 .streamlit-expanderContent {
-  background-color: white;
-  color: black;
+  background-color: var(--main-bg-color);
+  color: var(--main-bg-color);
 }
 
 .stTextInput input {
   width: 100%;
 }
 
+.stMarkdownContainer,
 .stTextInput > label,
 .stSelectbox > label {
   color: var(--text-color) !important;
@@ -35,6 +37,10 @@
 .stSelectbox > div > div > div {
   color: var(--text-color) !important;
   background-color: var(--secondary-bg-color) !important;
+}
+
+.stChatMessage .stMarkdown p {
+  color: black !important;
 }
 
 /* Target all text elements */
@@ -68,8 +74,11 @@ span {
 }
 
 body {
-  font-family: "Exo 2", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   direction: rtl;
+  color: var(--text-color) !important;
 }
 
 h1,
@@ -78,9 +87,9 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Orbitron", sans-serif;
   color: var(--accent-color);
   text-shadow: 0 0 10px var(--glow-color);
+  font-family: "Roboto", sans-serif;
 }
 
 img {
@@ -121,7 +130,6 @@ img {
 h3 {
   margin-bottom: 5px;
   font-weight: 400;
-  font-family: "Exo 2", sans-serif;
   text-transform: capitalize;
   letter-spacing: 1.2px;
   font-size: 16px; /* Changed from 1rem */
@@ -184,11 +192,6 @@ h3 {
   border-color: #00008b;
 }
 
-/* Adjust text color for better visibility */
-.stChatMessage .stMarkdown p {
-  color: #ffffff !important; /* White text for better contrast */
-}
-
 .full-screen-image-container {
   position: fixed;
   top: 0;
@@ -247,7 +250,6 @@ h3 {
   margin-bottom: 1px;
   color: #ffd700; /* Gold color */
   text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700, 0 0 30px #ffd700; /* Gold glow effect */
-  font-family: "Orbitron", sans-serif;
 }
 
 @media screen and (max-width: 880px) {

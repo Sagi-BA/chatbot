@@ -1,0 +1,107 @@
+<style>
+  .custom-expander {
+    background-color: #f0f8ff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+  }
+  .custom-expander label {
+    color: #1e90ff;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: block;
+  }
+  .expander-toggle {
+    display: none;
+  }
+  .expander-content {
+    font-size: 26px;
+    line-height: 1.6;
+    color: #000000; /* Changed to black */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+  .expander-toggle:checked + label + .expander-content {
+    max-height: 1000px; /* Adjust this value based on your content */
+  }
+  .expander-content p {
+    margin-bottom: 10px;
+  }
+  .highlight {
+    background: linear-gradient(120deg, #ffd700 0%, #ffd700 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.2em;
+    background-position: 0 88%;
+    transition: background-size 0.25s ease-in;
+  }
+  .highlight:hover {
+    background-size: 100% 88%;
+  }
+  .expander-toggle + label::after {
+    content: " ▼";
+  }
+  .expander-toggle:checked + label::after {
+    content: " ▲";
+  }
+  .centered-image {
+    width: 300px;
+    display: block;
+    margin: 20px auto;
+  }
+</style>
+
+<div class="custom-expander">
+  <input type="checkbox" id="expander-toggle" class="expander-toggle" />
+  <label for="expander-toggle">אודות האפליקציה</label>
+  <div class="expander-content">
+    <h2>RAG (Retrieval-Augmented Generation) בקצרה:</h2>
+    <p>
+      RAG היא טכנולוגיה המאפשרת ל-צ'אטבוט לאחזר מידע מדויק ממסמכים ארגוניים
+      ולהשתמש בו ליצירת תשובות מותאמות אישית. זה מבטיח דיוק, רלוונטיות ועדכניות
+      בתקשורת עם המשתמשים שלך.
+    </p>
+    <h2>הרעיון של אפליקציה זו:</h2>
+    <p>
+      אפליקציה זו מציעה לך פתרון חדשני לניצול המידע הפנים-ארגוני שלך בצורה יעילה
+      ונגישה. היא מאפשרת לך ליצור צ'אטבוט מותאם אישית, המסוגל לשוחח עם הלקוחות,
+      העובדים או בעלי העניין שלך, תוך שימוש במידע הייחודי של הארגון שלך.
+    </p>
+    <h2>יתרונות עבור הארגון שלך:</h2>
+    <ol>
+      <li>
+        נגישות מידע 24/7: אפשר לך לספק גישה למידע ארגוני בכל עת, ללא תלות בשעות
+        עבודה.
+      </li>
+      <li>
+        שיפור שירות לקוחות: ספק מענה מהיר ומדויק לשאלות נפוצות של הלקוחות שלך.
+      </li>
+      <li>יעילות תפעולית: הפחת עומס על צוותי התמיכה ומשאבי האנוש שלך.</li>
+      <li>עדכניות: עדכן בקלות את בסיס הידע, כך שהמידע שלך תמיד יהיה עדכני.</li>
+      <li>
+        התאמה אישית: התאם את ה-צ'אטבוט לצרכים ולטון הייחודיים של הארגון שלך.
+      </li>
+    </ol>
+    <h2>שימושים פוטנציאליים בארגון שלך:</h2>
+    <ul>
+      <li>מידע על מוצרים ושירותים</li>
+      <li>תמיכה טכנית ופתרון בעיות</li>
+      <li>מידע על נהלים ומדיניות פנים-ארגונית</li>
+      <li>עדכונים על אירועים ופעילויות</li>
+      <li>מענה לשאלות נפוצות של לקוחות או עובדים</li>
+    </ul>
+    <p>
+      באמצעות אפליקציה זו, תוכל להפוך את המידע הפנימי שלך למשאב נגיש ובעל ערך,
+      המשפר את התקשורת, היעילות והשירות בארגון שלך. זוהי הזדמנות עבורך להישאר
+      בחזית הטכנולוגיה ולספק חווית משתמש מתקדמת ואיכותית ללקוחות ולעובדים שלך.
+    </p>
+    <p>
+      השקע היום ב-צ'אטבוט חכם ומותאם אישית, וראה כיצד הארגון שלך מתייעל, משפר את
+      השירות ומגדיל את שביעות הרצון של הלקוחות והעובדים.
+    </p>
+  </div>
+</div>

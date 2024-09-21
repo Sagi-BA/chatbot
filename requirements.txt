@@ -1,5 +1,6 @@
 streamlit 
 streamlit-carousel
+streamlit-extras #https://arnaudmiribel.github.io/streamlit-extras/
 python-dotenv
 aiohttp #This is for telegram
 requests

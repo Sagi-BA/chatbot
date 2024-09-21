@@ -1,10 +1,21 @@
 import streamlit as st
+from streamlit_carousel import carousel
+from streamlit_extras.stylable_container import stylable_container
+import asyncio
 import json
 import os
 import base64
 from PIL import Image
-from streamlit_carousel import carousel
+
 from utils.PdfQAProcessor import PdfQAProcessor
+from utils.counter import initialize_user_count, increment_user_count, get_user_count
+from utils.init import initialize
+
+# Initialize session state
+if 'state' not in st.session_state:
+    st.session_state.state = {        
+        'counted': False,
+    }
 
 # קונפיגורציה והגדרות
 @st.cache_data
@@ -21,7 +32,7 @@ def load_data():
 
 def set_page_config():
     st.set_page_config(page_title="צ'אטבוט המתנ\"ס", layout="wide")
-    set_rtl_style()
+    # set_rtl_style()
     hide_streamlit_header_footer()
 
 def set_rtl_style():
@@ -130,6 +141,14 @@ def manage_chat(chat_key, system_prompt, pdf_name):
     
     for message in st.session_state.chat_histories[chat_key]:
         with st.chat_message(message["role"]):
+            # with stylable_container(
+            #     key="markdown_container", 
+            #     css_styles="""
+            #     {
+            #         color:black;                    
+            #     }
+            #     """
+            # ):
             st.markdown(message["content"])
     
     if prompt := st.chat_input("הקלד את שאלתך כאן:"):
@@ -146,9 +165,13 @@ def manage_chat(chat_key, system_prompt, pdf_name):
             st.markdown(answer)
         
         st.rerun()
-
+            
+def load_html_file(file_name):
+    with open(file_name, 'r', encoding='utf-8') as f:
+        return f.read()
+    
 # תהליך ראשי
-def main():
+async def main():
     # אתחול משתני המצב
     if 'current_page' not in st.session_state:
         st.session_state.current_page = 'main'
@@ -158,9 +181,13 @@ def main():
         st.session_state.chat_histories = {}
 
     set_page_config()
-    data = load_data()
-    
-    st.title("צ'אטבוט המתנ\"ס")
+    data = load_data()    
+    title, image_path, footer_content = initialize()
+    st.title(title)
+
+    # Load and display the custom expander HTML
+    expander_html = load_html_file('expander.html')
+    st.markdown(expander_html, unsafe_allow_html=True)
     
     if st.session_state.current_page == 'main':
         set_background_color(data["main_page"]["background_color"])
@@ -182,5 +209,15 @@ def main():
         else:
             st.write("זהו מסך מידע. אין כאן אפשרות לצ'אט.")
 
+    # Display footer content
+    st.markdown(footer_content, unsafe_allow_html=True)  
+    # Display user count after the chatbot
+    user_count = get_user_count(formatted=True)
+    st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)  
+
 if __name__ == "__main__":
-    main()
+    if 'counted' not in st.session_state:
+        st.session_state.counted = True
+        increment_user_count()
+    initialize_user_count()
+    asyncio.run(main())
