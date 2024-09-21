@@ -137,8 +137,9 @@ def manage_chat(chat_key, system_prompt, pdf_name):
         with st.chat_message("user"):
             st.markdown(prompt)
         
-        processor = get_pdf_processor()
-        answer = processor.process_pdf_and_answer(pdf_name, prompt, system_prompt)
+        with st.spinner('מעבד את השאלה שלך...'):
+            processor = get_pdf_processor()
+            answer = processor.process_pdf_and_answer(pdf_name, prompt, system_prompt)
         
         st.session_state.chat_histories[chat_key].append({"role": "assistant", "content": answer})
         with st.chat_message("assistant"):
