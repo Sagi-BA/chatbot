@@ -18,7 +18,7 @@ if 'state' not in st.session_state:
     }
 
 # קונפיגורציה והגדרות
-@st.cache_data
+@st.cache_data(show_spinner=False, ttl=None)
 def load_data():
     try:
         with open('matnas_data.json', 'r', encoding='utf-8') as f:
@@ -70,7 +70,7 @@ def set_background_color(color):
     """, unsafe_allow_html=True)
 
 # פונקציות תצוגה
-@st.cache_data
+@st.cache_data(show_spinner=False, ttl=None)
 def get_image_base64(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()

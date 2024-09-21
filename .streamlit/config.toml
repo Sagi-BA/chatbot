@@ -20,6 +20,8 @@ toolbarMode = "minimal"
 
 [server]
 maxUploadSize = 1
+enableCORS = false
+enableXsrfProtection = false
 
 [browser]
 fileWatcherType = "auto"
