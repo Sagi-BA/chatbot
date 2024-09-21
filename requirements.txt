@@ -5,7 +5,7 @@ aiohttp #This is for telegram
 requests
 asyncio
 groq
-
+openai
 PyMuPDF
 numpy
 
