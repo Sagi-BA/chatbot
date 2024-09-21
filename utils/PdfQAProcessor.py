@@ -58,7 +58,7 @@ class PdfQAProcessor:
 
     # Load embeddings from a file (Pickle)
     def load_embeddings_from_file(self, filename):
-        print(filename)
+        # print(filename)
         with open(filename, 'rb') as f:
             embeddings, chunks = pickle.load(f)
         return embeddings, chunks
@@ -75,7 +75,7 @@ class PdfQAProcessor:
         return most_relevant_chunk
 
     def generate_answer(self, question, context, system_prompt):
-        print(question)
+        # print(question)
         response = openai.chat.completions.create(
             model="gpt-4o-mini",
             messages=[

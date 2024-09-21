@@ -3,7 +3,7 @@
     "title": "ברוכים הבאים למתנ\"ס",
     "description": "היי, ברוכים הבאים למתנ\"ס העמק, באיזה עניין פניתם?",
     "background_color": "#ffffff",
-    "main_images": [
+    "images": [
       "main_image1.png",
       "main_image2.jpeg",
       "main_image3.jpeg",
@@ -27,13 +27,17 @@
       "buttons": [
         {
           "name": "זמני פתיחה",
-          "key": "opening_hours",
+          "key": "pool_opening_hours",
           "images": ["pool_hours.jpeg"]
         },
-        { "name": "מחירים", "key": "prices", "images": ["pool_prices.jpeg"] },
+        {
+          "name": "מחירים",
+          "key": "pool_prices",
+          "images": ["pool_prices.jpeg"]
+        },
         {
           "name": "גלריה",
-          "key": "gallery",
+          "key": "pool_gallery",
           "images": [
             "pool_gallery1.jpeg",
             "pool_gallery2.jpeg",
@@ -53,12 +57,12 @@
       "buttons": [
         {
           "name": "לוח אירועים רבעוני",
-          "key": "quarterly_calendar_of_events",
+          "key": "events_quarterly_calendar_of",
           "images": ["events_calendar.jpeg"]
         },
         {
           "name": "גלריה",
-          "key": "gallery",
+          "key": "events_gallery",
           "images": ["events_gallery1.jpeg", "events_gallery2.jpeg"]
         }
       ]
@@ -71,13 +75,21 @@
       "system_prompt": "אתה נציג שירות לקוחות של המתנ\"ס. עליך לספק מידע כללי על המתנ\"ס, כולל טלפונים, מחלקות, ומפת הגעה. המידע שאתה מספק הוא רק מהתוכן שאתה מקבל ולא משום מקום אחר! אם אין לך תשובה אז אתה עונה: אני לא יודע.",
       "pdf_file": "general_info.pdf",
       "buttons": [
-        { "name": "טלפונים", "key": "phones", "images": ["info_phones.jpeg"] },
+        {
+          "name": "טלפונים",
+          "key": "general_info_phones",
+          "images": ["info_phones.jpeg"]
+        },
         {
           "name": "מחלקות",
-          "key": "departments",
+          "key": "general_info_departments",
           "images": ["info_departments1.jpeg", "info_departments2.jpeg"]
         },
-        { "name": "מפת הגעה", "key": "map", "images": ["info_map.jpeg"] }
+        {
+          "name": "מפת הגעה",
+          "key": "general_info_map",
+          "images": ["info_map.jpeg"]
+        }
       ]
     }
   }

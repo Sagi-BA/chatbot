@@ -32,7 +32,6 @@ def load_data():
 
 def set_page_config():
     st.set_page_config(page_title="צ'אטבוט המתנ\"ס", layout="wide")
-    # set_rtl_style()
     hide_streamlit_header_footer()
     
     # הוספת CSS לקיבוע ה-chat_input בתחתית
@@ -122,30 +121,30 @@ def display_pdf_download(pdf_file):
                 <line x1="16" y1="17" x2="8" y2="17"></line>
                 <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
-            <span style="margin-right: 15px; color: black;">הורדת המסמך שעליו אומן</span>
+            <span style="margin-right: 15px; color: black;">הורד מסמך</span>
         </a>
         """
         return custom_button
     else:
         return None
 
+def page_transition_callback(next_page):
+    st.session_state.next_page = next_page
+
 def create_dialog(dialog_data):
     cols = st.columns([1] + [2] * len(dialog_data["buttons"]))
     
-    if cols[0].button("חזרה לדף הראשי", key="back_to_main"):
-        st.session_state.current_page = 'main'
-        st.session_state.current_chat = None
-        st.rerun()
+    if cols[0].button("חזרה לדף הראשי", key="back_to_main", on_click=page_transition_callback, args=('main',)):
+        pass  # The actual state change is handled in the callback
     
     for i, button in enumerate(dialog_data["buttons"], start=1):
-        if cols[i].button(button["name"], key=f"{dialog_data['title']}_{button['key']}"):
-            st.session_state.current_chat = button["key"]
-            st.session_state.current_images = button["images"]
-            st.rerun()
+        button_key = f"{dialog_data['title']}_{button['key']}"
+        if cols[i].button(button["name"], key=button_key, on_click=button_callback, args=(button["key"], button.get("images", []))):
+            pass  # The actual state change is handled in the callback
 
-def display_images():
-    if 'current_images' in st.session_state and st.session_state.current_images:
-        display_and_download_images(st.session_state.current_images, st.session_state.current_chat)
+def button_callback(button_key, images):
+    st.session_state.current_chat = button_key
+    st.session_state.current_images = images
 
 @st.cache_resource
 def get_pdf_processor():
@@ -190,11 +189,18 @@ def load_footer():
             return footer_file.read()
     return None  # Return None if the file doesn't exist
 
+def display_images():
+    if 'current_images' in st.session_state and st.session_state.current_images:
+        display_and_download_images(st.session_state.current_images, st.session_state.current_chat)
+
 # תהליך ראשי
 async def main():
+    
     # אתחול משתני המצב
     if 'current_page' not in st.session_state:
         st.session_state.current_page = 'main'
+    if 'next_page' not in st.session_state:
+        st.session_state.next_page = None
     if 'current_chat' not in st.session_state:
         st.session_state.current_chat = None
     if 'chat_histories' not in st.session_state:
@@ -209,14 +215,22 @@ async def main():
     expander_html = load_html_file('expander.html')
     st.markdown(expander_html, unsafe_allow_html=True)
     
+    # Handle page transitions
+    if st.session_state.next_page is not None:
+        st.session_state.current_page = st.session_state.next_page
+        st.session_state.next_page = None
+        st.session_state.current_chat = None
+        st.session_state.current_images = []
+        st.rerun()
+
     if st.session_state.current_page == 'main':
         set_background_color(data["main_page"]["background_color"])
         st.header(data["main_page"]["title"])
         st.subheader(data["main_page"]["description"])
 
         # Add carousel for main page if images are provided
-        if "main_images" in data["main_page"]:
-            main_images = data["main_page"]["main_images"]
+        if "images" in data["main_page"]:
+            main_images = data["main_page"]["images"]
             carousel_items = []
             for image in main_images:
                 image_path = os.path.abspath(os.path.join('uploads', image))
@@ -234,9 +248,8 @@ async def main():
 
         cols = st.columns(len(data["main_buttons"]))
         for i, button in enumerate(reversed(data["main_buttons"])):
-            if cols[i].button(button["name"]):
-                st.session_state.current_page = button["key"]
-                st.rerun()
+            if cols[i].button(button["name"], on_click=page_transition_callback, args=(button["key"],)):
+                pass  # The actual state change is handled in the callback
     else:
         dialog_data = data["dialogs"][st.session_state.current_page]
         set_background_color(dialog_data["background_color"])
@@ -255,8 +268,9 @@ async def main():
         
         create_dialog(dialog_data)
         
-        # הצגת התמונות
-        display_images()
+        # Display images only if they are present in the current state
+        if 'current_images' in st.session_state and st.session_state.current_images:
+            display_images()
         
         if dialog_data["is_chatbot"]:
             manage_chat(st.session_state.current_page, dialog_data["system_prompt"], dialog_data["pdf_file"])
