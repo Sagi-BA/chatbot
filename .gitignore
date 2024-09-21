@@ -3,5 +3,6 @@ myenv
 .env
 # Ignore all __pycache__ directories
 **/__pycache__/
-
+*.txt
+*.pkl
 data/user_count.json
