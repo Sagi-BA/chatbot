@@ -121,7 +121,7 @@ def display_pdf_download(pdf_file):
                 <line x1="16" y1="17" x2="8" y2="17"></line>
                 <polyline points="10 9 9 9 8 9"></polyline>
             </svg>
-            <span style="margin-right: 15px; color: black;">הורד מסמך</span>
+            <span style="margin-right: 15px; color: black;">הורד מסמך שהבוט אומן עליו</span>
         </a>
         """
         return custom_button
