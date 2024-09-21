@@ -1,10 +1,10 @@
 ![Alt text](https://i.imgur.com/RhRQLLN.jpg)
 
-# 👀 Aviad Chat & Art
+# 👀 Live Interactive RAG Chatbot
 
-A Living Galaxy brings the Star Wars characters to life through interactive conversations and spectacular vintage art. Chat with your favorite heroes and create unique galactic memories.
+Living Community Center brings the community center to life through interactive conversations and a stunning image gallery. Chat with community center representatives and get information about various activities, events, and services.
 
-> You can try the app [here](https://sagi-starwars-chatbot.streamlit.app/)
+> You can try the app [here](https://sagi-chatbot.streamlit.app/)
 
 [![Linktree](https://img.shields.io/badge/linktree-white?style=for-the-badge&logo=linktree&logoColor=43E55E)](https://linktr.ee/sagib?lt_utm_source=lt_share_link#373198503) |
 [![Facebook](https://img.shields.io/badge/facebook-white?style=for-the-badge&logo=facebook&logoColor=0866FF)](https://www.facebook.com/sagi.baron) |
@@ -17,19 +17,15 @@ A Living Galaxy brings the Star Wars characters to life through interactive conv
 [![Email Me](https://img.shields.io/badge/email_me-white?style=for-the-badge&logo=gmail&logoColor=EA4335)](mailto:sagi.baron76@gmail.com) |
 [![Buy Me A Beer](https://img.shields.io/badge/Buy_Me_A_Beer-white?style=for-the-badge&logo=buymeacoffee&logoColor=FFDD00)](https://buymeacoffee.com/sagibar)
 
-## Watch the video tutorial
-
-![header image](https://i.imgur.com/Ds2Vibi.jpg)
-
 ## How it works
 
-The Star Wars Chat & Art app offers a unique experience of combining the world of imagination and reality.
+The Community Center Chatbot app offers a unique experience combining information, communication, and visuals.
 
-Enjoy real-life images of Star Wars characters alongside vintage-style cartoons for a classic, nostalgic feel.
+- View real images of community center activities alongside detailed information about each activity.
+- Chat with a virtual representative of the community center and get immediate answers to your questions.
+- Access information about the swimming pool, planned events, and general information about the community center.
 
-But that's not all - you can chat with your favorite characters through chat, and get answers directly from them!
-
-The application offers an interactive and spectacular user experience, which combines art and innovation in communication with the iconic characters of the world famous science fiction film series.
+The application offers an interactive and impressive user experience, combining visual information and innovation in communication with the community center.
 
 ## Install dependencies
 
@@ -42,9 +38,32 @@ Run the following command to install them:
 
 ## Usage
 
-Make sure you have [Streamlit installed](https://docs.streamlit.io/) CLI before running the application.  
+Make sure you have [Streamlit installed](https://docs.streamlit.io/) before running the application.  
 Run the following command in your terminal:
 
 ```
 streamlit run main.py
 ```
+
+## Features
+
+- **Interactive Chatbot**: Get immediate answers to questions about community center activities.
+- **Image Gallery**: View photos from various activities and events at the community center.
+- **Detailed Information**: Access information about the pool, planned events, and general information.
+- **PDF Downloads**: Download relevant documents such as schedules and price lists.
+- **User-Friendly Interface**: Easily navigate between different screens and quickly get the required information.
+
+## Technologies
+
+- **Streamlit**: For building the interactive user interface.
+- **Python**: The main programming language of the application.
+- **JSON**: For storing and processing content data.
+- **PDF Processing**: For processing and analyzing PDF files to answer questions.
+
+## Contribution
+
+Interested in contributing to the project? Great! Please contact the development team for information on how to get started.
+
+## License
+
+This project is protected under the MIT license. See the `LICENSE` file for more details.

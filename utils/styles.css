@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;700&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap");
 :root {
   --main-bg-color: #ffffff;
   --secondary-bg-color: #09ba09;
@@ -61,7 +61,7 @@ span {
 .stButton > button {
   width: 100%;
   color: var(--main-bg-color) !important;
-  background-color: var(--accent-color) !important;
+  /* background-color: var(--accent-color) !important; */
   border-color: var(--glow-color) !important;
   margin: 1px;
 }
@@ -69,7 +69,7 @@ span {
 .stButton > button:hover {
   color: var(--text-color) !important;
   background-color: var(--secondary-bg-color) !important;
-  border-color: var(--accent-color) !important;
+  /* border-color: var(--accent-color) !important; */
   box-shadow: 0 0 10px var(--glow-color);
 }
 
@@ -87,7 +87,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--accent-color);
+  /* color: var(--accent-color); */
   text-shadow: 0 0 10px var(--glow-color);
   font-family: "Roboto", sans-serif;
 }

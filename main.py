@@ -34,18 +34,22 @@ def set_page_config():
     st.set_page_config(page_title="צ'אטבוט המתנ\"ס", layout="wide")
     # set_rtl_style()
     hide_streamlit_header_footer()
-
-def set_rtl_style():
+    
+    # הוספת CSS לקיבוע ה-chat_input בתחתית
     st.markdown("""
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
-        html, body, [class*="css"] {
-            direction: rtl;
-            text-align: right;
-            font-family: 'Heebo', sans-serif;
+        .stChatFloatingInputContainer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 10px;
+            z-index: 1000;
         }
-        .stButton>button { float: right; }
-        .stTextInput>div>div>input { text-align: right; }
+        .main .block-container {
+            padding-bottom: 80px;  /* מרווח קטן כדי למנוע חפיפה עם ה-input */
+        }
         </style>
     """, unsafe_allow_html=True)
 
@@ -103,14 +107,27 @@ def display_pdf_download(pdf_file):
     if os.path.exists(pdf_path):
         with open(pdf_path, "rb") as pdf:
             pdf_bytes = pdf.read()
-        st.download_button(
-            label="📄 הורד PDF",
-            data=pdf_bytes,
-            file_name=pdf_file,
-            mime="application/pdf",
-        )
+        
+        # Encode the PDF content
+        b64_pdf = base64.b64encode(pdf_bytes).decode()
+        
+        # Create a custom styled button with PDF icon and black text (larger size)
+        custom_button = f"""
+        <a href="data:application/pdf;base64,{b64_pdf}" download="{pdf_file}" 
+           style="text-decoration: none; color: black; background-color: #f0f0f0; padding: 15px 25px; border-radius: 8px; display: inline-flex; align-items: center; border: 1px solid #ddd; font-size: 16px; transition: all 0.3s;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <span style="margin-right: 15px; color: black;">הורדת המסמך שעליו אומן</span>
+        </a>
+        """
+        return custom_button
     else:
-        st.error(f"קובץ ה-PDF {pdf_file} לא נמצא.")
+        return None
 
 def create_dialog(dialog_data):
     cols = st.columns([1] + [2] * len(dialog_data["buttons"]))
@@ -120,18 +137,21 @@ def create_dialog(dialog_data):
         st.session_state.current_chat = None
         st.rerun()
     
-    display_pdf_download(dialog_data["pdf_file"])
-    
     for i, button in enumerate(dialog_data["buttons"], start=1):
         if cols[i].button(button["name"], key=f"{dialog_data['title']}_{button['key']}"):
             st.session_state.current_chat = button["key"]
-            display_and_download_images(button["images"], button["name"])
+            st.session_state.current_images = button["images"]
+            st.rerun()
 
-# ניהול צ'אט
+def display_images():
+    if 'current_images' in st.session_state and st.session_state.current_images:
+        display_and_download_images(st.session_state.current_images, st.session_state.current_chat)
+
 @st.cache_resource
 def get_pdf_processor():
     return PdfQAProcessor()
 
+# ניהול צ'אט
 def manage_chat(chat_key, system_prompt, pdf_name):
     if 'chat_histories' not in st.session_state:
         st.session_state.chat_histories = {}
@@ -141,16 +161,9 @@ def manage_chat(chat_key, system_prompt, pdf_name):
     
     for message in st.session_state.chat_histories[chat_key]:
         with st.chat_message(message["role"]):
-            # with stylable_container(
-            #     key="markdown_container", 
-            #     css_styles="""
-            #     {
-            #         color:black;                    
-            #     }
-            #     """
-            # ):
             st.markdown(message["content"])
     
+    # העברת ה-chat_input לסוף הפונקציה
     if prompt := st.chat_input("הקלד את שאלתך כאן:"):
         st.session_state.chat_histories[chat_key].append({"role": "user", "content": prompt})
         with st.chat_message("user"):
@@ -170,6 +183,13 @@ def load_html_file(file_name):
     with open(file_name, 'r', encoding='utf-8') as f:
         return f.read()
     
+def load_footer():
+    footer_path = os.path.join('utils', 'footer.md')
+    if os.path.exists(footer_path):
+        with open(footer_path, 'r', encoding='utf-8') as footer_file:
+            return footer_file.read()
+    return None  # Return None if the file doesn't exist
+
 # תהליך ראשי
 async def main():
     # אתחול משתני המצב
@@ -183,15 +203,17 @@ async def main():
     set_page_config()
     data = load_data()    
     title, image_path, footer_content = initialize()
-    st.title(title)
 
-    # Load and display the custom expander HTML
+    st.title(title, anchor=None, help="נוצר על ידי שגיא בר און")
+
     expander_html = load_html_file('expander.html')
     st.markdown(expander_html, unsafe_allow_html=True)
     
     if st.session_state.current_page == 'main':
         set_background_color(data["main_page"]["background_color"])
+        st.header(data["main_page"]["title"])
         st.subheader(data["main_page"]["description"])
+
         cols = st.columns(len(data["main_buttons"]))
         for i, button in enumerate(reversed(data["main_buttons"])):
             if cols[i].button(button["name"]):
@@ -200,21 +222,38 @@ async def main():
     else:
         dialog_data = data["dialogs"][st.session_state.current_page]
         set_background_color(dialog_data["background_color"])
-        st.subheader(dialog_data["title"])
-        st.write(dialog_data["description"])
+        st.header(dialog_data["title"])
+        
+        # Create two columns for description and PDF button
+        col1, col2 = st.columns([2, 1])
+        
+        with col1:
+            st.subheader(dialog_data["description"])
+        
+        with col2:
+            pdf_button = display_pdf_download(dialog_data["pdf_file"])
+            if pdf_button:
+                st.markdown(pdf_button, unsafe_allow_html=True)
+        
         create_dialog(dialog_data)
+        
+        # הצגת התמונות
+        display_images()
         
         if dialog_data["is_chatbot"]:
             manage_chat(st.session_state.current_page, dialog_data["system_prompt"], dialog_data["pdf_file"])
         else:
             st.write("זהו מסך מידע. אין כאן אפשרות לצ'אט.")
 
-    # Display footer content
-    st.markdown(footer_content, unsafe_allow_html=True)  
+    # Display footer content    
+    if footer_content:
+        st.markdown("---")
+        st.markdown(footer_content, unsafe_allow_html=True)
+        
     # Display user count after the chatbot
     user_count = get_user_count(formatted=True)
-    st.markdown(f"<p class='user-count' style='color: #4B0082;'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)  
-
+    st.markdown(f"<p class='user-count' style='color: #4B0082;'><a href='https://api.whatsapp.com/send?phone=972549995050' alt='Contact Me' target='_blank'>סה\"כ משתמשים: {user_count}</p>", unsafe_allow_html=True)
+        
 if __name__ == "__main__":
     if 'counted' not in st.session_state:
         st.session_state.counted = True
