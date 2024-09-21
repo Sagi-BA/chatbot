@@ -214,6 +214,24 @@ async def main():
         st.header(data["main_page"]["title"])
         st.subheader(data["main_page"]["description"])
 
+        # Add carousel for main page if images are provided
+        if "main_images" in data["main_page"]:
+            main_images = data["main_page"]["main_images"]
+            carousel_items = []
+            for image in main_images:
+                image_path = os.path.abspath(os.path.join('uploads', image))
+                if os.path.exists(image_path):
+                    carousel_items.append({
+                        "title": "",
+                        "text": "",
+                        "img": f"data:image/png;base64,{get_image_base64(image_path)}"
+                    })
+                else:
+                    st.error(f"התמונה {image} לא נמצאה בנתיב: {image_path}")
+            
+            if carousel_items:
+                carousel(items=carousel_items, width=1.0)
+
         cols = st.columns(len(data["main_buttons"]))
         for i, button in enumerate(reversed(data["main_buttons"])):
             if cols[i].button(button["name"]):

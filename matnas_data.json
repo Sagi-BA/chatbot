@@ -2,7 +2,14 @@
   "main_page": {
     "title": "ברוכים הבאים למתנ\"ס",
     "description": "היי, ברוכים הבאים למתנ\"ס העמק, באיזה עניין פניתם?",
-    "background_color": "#ffffff"
+    "background_color": "#ffffff",
+    "main_images": [
+      "main_image1.png",
+      "main_image2.jpeg",
+      "main_image3.jpeg",
+      "main_image4.jpeg",
+      "main_image5.jpeg"
+    ]
   },
   "main_buttons": [
     { "name": "בריכה", "key": "pool" },
