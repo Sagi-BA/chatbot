@@ -151,19 +151,20 @@ def get_pdf_processor():
     return PdfQAProcessor()
 
 # ניהול צ'אט
-def manage_chat(chat_key, system_prompt, pdf_name):
-    if 'chat_histories' not in st.session_state:
+def manage_chat(chat_key, system_prompt, pdf_name):    
+
+    if 'chat_histories' not in st.session_state:        
         st.session_state.chat_histories = {}
     
     if chat_key not in st.session_state.chat_histories:
         st.session_state.chat_histories[chat_key] = []
-    
+
     for message in st.session_state.chat_histories[chat_key]:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
     
     # העברת ה-chat_input לסוף הפונקציה
-    if prompt := st.chat_input("הקלד את שאלתך כאן:"):
+    if prompt := st.chat_input("הקלד את שאלתך כאן:"):        
         st.session_state.chat_histories[chat_key].append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
@@ -255,16 +256,10 @@ async def main():
         set_background_color(dialog_data["background_color"])
         st.header(dialog_data["title"])
         
-        # Create two columns for description and PDF button
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            st.subheader(dialog_data["description"])
-        
-        with col2:
-            pdf_button = display_pdf_download(dialog_data["pdf_file"])
-            if pdf_button:
-                st.markdown(pdf_button, unsafe_allow_html=True)
+        # with col2:
+        pdf_button = display_pdf_download(dialog_data["pdf_file"])
+        if pdf_button:
+            st.markdown(pdf_button, unsafe_allow_html=True)
         
         create_dialog(dialog_data)
         
@@ -272,10 +267,14 @@ async def main():
         if 'current_images' in st.session_state and st.session_state.current_images:
             display_images()
         
-        if dialog_data["is_chatbot"]:
+        if dialog_data["is_chatbot"]:            
             manage_chat(st.session_state.current_page, dialog_data["system_prompt"], dialog_data["pdf_file"])
+            
+            if st.session_state.chat_histories[st.session_state.current_page] == []:
+                with st.chat_message("assistant"):
+                    st.markdown(dialog_data["description"])   
         else:
-            st.write("זהו מסך מידע. אין כאן אפשרות לצ'אט.")
+            st.write("זהו מסך מידע. אין כאן אפשרות לצ'אט.")             
 
     # Display footer content    
     if footer_content:
