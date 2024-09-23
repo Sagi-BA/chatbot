@@ -157,14 +157,14 @@ def manage_chat(chat_key, system_prompt, pdf_name):
     
     if chat_key not in st.session_state.chat_histories:
         st.session_state.chat_histories[chat_key] = []
+        # Clear conversation history when starting a new chat
+        get_pdf_processor().clear_conversation_history()
 
     for message in st.session_state.chat_histories[chat_key]:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
     
-    # העברת ה-chat_input לסוף הפונקציה
     if prompt := st.chat_input("הקלד את שאלתך כאן:"):  
-              
         st.session_state.chat_histories[chat_key].append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)

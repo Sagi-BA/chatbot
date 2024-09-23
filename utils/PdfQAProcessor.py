@@ -4,6 +4,8 @@ import numpy as np
 import os
 import pickle
 from dotenv import load_dotenv
+from groq import Groq
+from collections import deque
 
 class PdfQAProcessor:
     def __init__(self, data_folder="data", embeddings_folder="embeddings"):
@@ -11,8 +13,11 @@ class PdfQAProcessor:
         load_dotenv()
 
         # Get the API key from the environment variable
+        self.model_type = os.environ.get("MODEL_TYPE")
         self.api_key = os.getenv("OPENAI_API_KEY")
-
+        self.embeddings_model = os.getenv("EMBEDDINGS_MODEL") #"text-embedding-ada-002", #text-embedding-3-small or any other embedding model
+        self.llm_model = os.getenv("LLM_MODEL", "llama3-70b-8192") #"gpt-4o", #"gpt-4o",  "gpt-4o-mini"# Use GPT-4 or a smaller model if desired sagi
+        self.max_token = int(os.getenv("MAX_TOKENS", 1024))
         # Check if the API key exists, raise an error if not found
         if not self.api_key:
             raise ValueError("OpenAI API key not found. Please add 'OPENAI_API_KEY' to your .env file.")
@@ -26,6 +31,9 @@ class PdfQAProcessor:
 
         # Ensure the embeddings folder exists
         os.makedirs(self.embeddings_folder, exist_ok=True)
+
+        # Initialize conversation history
+        self.conversation_history = deque(maxlen=10)
 
     # Extract text from PDF using PyMuPDF
     def extract_text_from_pdf(self, pdf_name):
@@ -44,7 +52,7 @@ class PdfQAProcessor:
     def create_embedding(self, text):
         
         response = openai.embeddings.create(
-            model="text-embedding-ada-002",  # or any other embedding model
+            model= self.embeddings_model,
             input=text
         )
 
@@ -118,26 +126,47 @@ class PdfQAProcessor:
             return "לא נמצא מידע רלוונטי לשאלה שלך. נסה לשאול שאלה אחרת או לפרט יותר."
         
         try:
-            # Call OpenAI's GPT-4 to generate the answer
-            # Otherwise, proceed to generate the answer using the context
-            response = openai.chat.completions.create(
-                model="gpt-4o", #"gpt-4o",  "gpt-4o-mini"# Use GPT-4 or a smaller model if desired sagi
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "assistant", "content": f"Context: {context}"},  # Providing the context
-                    {"role": "user", "content": question}  # User's query
-                ],
-                max_tokens=850,  # Adjust based on the answer length you expect
-                temperature=0.0  # Low temperature for more deterministic responses
-            )
+            # Prepare the conversation history
+            messages = [
+                {"role": "system", "content": system_prompt},
+                {"role": "assistant", "content": f"Context: {context}"},
+            ]
             
-            # Extract and return the response from the assistant
-            answer = response.choices[0].message.content.strip()
+            # Add conversation history
+            for history_item in self.conversation_history:
+                messages.append({"role": "user", "content": history_item["question"]})
+                messages.append({"role": "assistant", "content": history_item["answer"]})
+            
+            # Add the current question
+            messages.append({"role": "user", "content": question})
+            
+            if self.model_type == "chatgpt":
+                response = openai.chat.completions.create(
+                    model= self.llm_model, #"gpt-4o", #"gpt-4o",  "gpt-4o-mini"# Use GPT-4 or a smaller model if desired sagi
+                    messages=messages,
+                    max_tokens = self.max_token,  # Adjust based on the answer length you expect
+                    temperature=0.0  # Low temperature for more deterministic responses
+                )
+                answer = response.choices[0].message.content.strip()
+
+            elif self.model_type == "qroq":
+                groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+                response = groq_client.chat.completions.create(
+                    messages=messages,
+                    model=self.llm_model,
+                    temperature=0.0,
+                    max_tokens=self.max_token,
+                    stream=False
+                )
+                answer = response.choices[0].message.content.strip()
 
             # Check if the answer is empty
             if not answer:
                 return "לא הצלחתי למצוא תשובה לשאלה שלך בהתבסס על המידע הקיים. נסה לשאול שאלה אחרת."
             
+            # Update conversation history
+            self.conversation_history.append({"question": question, "answer": answer})
+
             return answer
         
         except Exception as e:
@@ -173,27 +202,18 @@ class PdfQAProcessor:
         # Get the most relevant chunk for the question
         relevant_chunk = self.get_top_relevant_chunks(question, embeddings, chunks, top_n=3)
 
-        # Generate and return the answer, now with the system prompt
+        # Generate and return the answer, now with the system prompt and conversation history
         answer = self.generate_answer(question, relevant_chunk, system_prompt)
 
         return answer
+
+    def clear_conversation_history(self):
+        self.conversation_history.clear()
 
 # Example usage
 if __name__ == "__main__":
     # Initialize the processor
     processor = PdfQAProcessor()
-
-    # Path to your Hebrew PDF
-    pdf_name = "general_info.pdf"
-    
-    # Example question
-    question = "מה הטלפון של עמית ברק?"
-    # question = "האם יש מנוי שנתי? אם כן מה זה כולל ?"
-
-     # Define your system prompt
-    # system_prompt = (
-    #     "אתה מומחה בניהול בריכות ומומחה בתחום. עליך לענות על שאלות ששואלים אותך. התשובות שלך הם רק מהתוכן שאתה מקבל ולא משום מקום אחר! אם אין לך תשובה אז אתה עונה: סליחה, אין לי את המידע הזה."        
-    # )
 
     # System prompt (can be in Hebrew as well)
     system_prompt = """
@@ -205,8 +225,24 @@ if __name__ == "__main__":
     ספק תשובות מבוססות על ההקשר שסופק בלבד, תוך שמירה על מקצועיות ושירותיות.
     """
 
+    # Path to your Hebrew PDF
+    pdf_name = "general_info.pdf"
+    
+    # Example question
+    question = "מי זה עמית ברק?"
+    # question = "האם יש מנוי שנתי? אם כן מה זה כולל ?"
+
+     # Define your system prompt
+    # system_prompt = (
+    #     "אתה מומחה בניהול בריכות ומומחה בתחום. עליך לענות על שאלות ששואלים אותך. התשובות שלך הם רק מהתוכן שאתה מקבל ולא משום מקום אחר! אם אין לך תשובה אז אתה עונה: סליחה, אין לי את המידע הזה."        
+    # )    
+
     # Get the answer from the PDF
+    answer = processor.process_pdf_and_answer(pdf_name, question, system_prompt)
+    print(f"Answer: {answer}")
+
+    question = "מה הטלפון שלו?"
+     # Get the answer from the PDF
     answer = processor.process_pdf_and_answer(pdf_name, question, system_prompt)
 
     print(f"Answer: {answer}")
-
