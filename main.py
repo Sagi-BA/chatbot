@@ -151,8 +151,7 @@ def get_pdf_processor():
     return PdfQAProcessor()
 
 # ניהול צ'אט
-def manage_chat(chat_key, system_prompt, pdf_name):    
-
+def manage_chat(chat_key, system_prompt, pdf_name):
     if 'chat_histories' not in st.session_state:        
         st.session_state.chat_histories = {}
     
@@ -164,13 +163,14 @@ def manage_chat(chat_key, system_prompt, pdf_name):
             st.markdown(message["content"])
     
     # העברת ה-chat_input לסוף הפונקציה
-    if prompt := st.chat_input("הקלד את שאלתך כאן:"):        
+    if prompt := st.chat_input("הקלד את שאלתך כאן:"):  
+              
         st.session_state.chat_histories[chat_key].append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
         
         with st.spinner('מעבד את השאלה שלך...'):
-            processor = get_pdf_processor()
+            processor = get_pdf_processor()            
             answer = processor.process_pdf_and_answer(pdf_name, prompt, system_prompt)
         
         st.session_state.chat_histories[chat_key].append({"role": "assistant", "content": answer})

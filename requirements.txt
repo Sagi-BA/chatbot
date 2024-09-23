@@ -11,6 +11,12 @@ PyMuPDF
 numpy
 
 
+# Summary:
+# git reset --hard: Discards any local changes.
+# git fetch --all: Fetches the latest changes from the remote repository.
+# git reset --hard origin/main: Resets your local branch to the latest commit from the remote branch.
+# git clean -fd: (Optional) Cleans untracked files.
 
-
-
+# 1. For VS Code:
+# Open the Command Palette (Ctrl+Shift+P).
+# Type Python: Select Interpreter.
