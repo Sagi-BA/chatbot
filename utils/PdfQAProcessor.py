@@ -121,7 +121,7 @@ class PdfQAProcessor:
             # Call OpenAI's GPT-4 to generate the answer
             # Otherwise, proceed to generate the answer using the context
             response = openai.chat.completions.create(
-                model="gpt-4o", #"gpt-4o",  "gpt-4o-mini"# Use GPT-4 or a smaller model if desired
+                model="gpt-4o", #"gpt-4o",  "gpt-4o-mini"# Use GPT-4 or a smaller model if desired sagi
                 messages=[
                     {"role": "system", "content": system_prompt},
                     {"role": "assistant", "content": f"Context: {context}"},  # Providing the context
