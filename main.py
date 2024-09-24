@@ -139,12 +139,16 @@ def create_dialog(dialog_data):
     
     for i, button in enumerate(dialog_data["buttons"], start=1):
         button_key = f"{dialog_data['title']}_{button['key']}"
-        if cols[i].button(button["name"], key=button_key, on_click=button_callback, args=(button["key"], button.get("images", []))):
+        if cols[i].button(button["name"], key=button_key, on_click=button_callback, args=(button["key"], button.get("images", []), button.get("videos", []))):
             pass  # The actual state change is handled in the callback
 
-def button_callback(button_key, images):
+def button_callback(button_key, images, videos=None):
     st.session_state.current_chat = button_key
     st.session_state.current_images = images
+    if videos:
+        st.session_state.current_videos = videos
+    else:
+        st.session_state.current_videos = []
 
 @st.cache_resource
 def get_pdf_processor():
@@ -194,6 +198,21 @@ def display_images():
     if 'current_images' in st.session_state and st.session_state.current_images:
         display_and_download_images(st.session_state.current_images, st.session_state.current_chat)
 
+def display_videos(videos):
+    print('Loading video')
+    if videos:
+        for video in videos:
+            try:
+                # st.video(video, start_time=0, width=400)
+
+                col1,col2=st.columns([1,2])
+                    
+                with col1:
+                    st.video(video)
+            except Exception as e:
+                st.error(f"Error loading video: {video}")
+                st.exception(e)
+
 # תהליך ראשי
 async def main():
     
@@ -229,6 +248,10 @@ async def main():
         st.header(data["main_page"]["title"])
         st.subheader(data["main_page"]["description"])
 
+        # Display main page videos
+        if "videos" in data["main_page"]:
+            display_videos(data["main_page"]["videos"])
+
         # Add carousel for main page if images are provided
         if "images" in data["main_page"]:
             main_images = data["main_page"]["images"]
@@ -245,7 +268,7 @@ async def main():
                     st.error(f"התמונה {image} לא נמצאה בנתיב: {image_path}")
             
             if carousel_items:
-                carousel(items=carousel_items, width=1.0)
+                carousel(items=carousel_items, width=0.8)
 
         cols = st.columns(len(data["main_buttons"]))
         for i, button in enumerate(reversed(data["main_buttons"])):
@@ -262,6 +285,10 @@ async def main():
             st.markdown(pdf_button, unsafe_allow_html=True)
         
         create_dialog(dialog_data)
+
+        # Display dialog videos
+        if "videos" in dialog_data:
+            display_videos(dialog_data["videos"])
         
         # Display images only if they are present in the current state
         if 'current_images' in st.session_state and st.session_state.current_images:
