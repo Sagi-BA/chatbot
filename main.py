@@ -85,7 +85,7 @@ def display_and_download_images(image_filenames, button_name):
             st.error(f"התמונה {image_filename} לא נמצאה בנתיב: {image_path}")
 
     if len(images) == 1:
-        st.image(images[0]["img"], use_column_width=True)
+        st.image(images[0]["img"], use_container_width=True)
     elif len(images) > 1:
         carousel_items = [{"title": "", "text": "", "img": f"data:image/png;base64,{get_image_base64(img['img'])}"} for img in images]
         carousel(items=carousel_items, width=1.0)
