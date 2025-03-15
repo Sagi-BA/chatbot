@@ -132,6 +132,13 @@ def page_transition_callback(next_page):
     st.session_state.next_page = next_page
 
 def create_dialog(dialog_data):
+    # Check if "buttons" key exists in the dialog_data
+    if "buttons" not in dialog_data:
+        # If there are no buttons, just create a back button
+        if st.button("חזרה לדף הראשי", key="back_to_main", on_click=page_transition_callback, args=('main',)):
+            pass  # The actual state change is handled in the callback
+        return
+    
     cols = st.columns([1] + [2] * len(dialog_data["buttons"]))
     
     if cols[0].button("חזרה לדף הראשי", key="back_to_main", on_click=page_transition_callback, args=('main',)):
@@ -197,6 +204,10 @@ def load_footer():
 def display_images():
     if 'current_images' in st.session_state and st.session_state.current_images:
         display_and_download_images(st.session_state.current_images, st.session_state.current_chat)
+
+def display_dialog_images(dialog_data):
+    if "images" in dialog_data:
+        display_and_download_images(dialog_data["images"], dialog_data["title"])
 
 def display_videos(videos):
     print('Loading video')
@@ -289,6 +300,10 @@ async def main():
         # Display dialog videos
         if "videos" in dialog_data:
             display_videos(dialog_data["videos"])
+        
+        # Display direct images from the dialog data
+        if "images" in dialog_data:
+            display_dialog_images(dialog_data)
         
         # Display images only if they are present in the current state
         if 'current_images' in st.session_state and st.session_state.current_images:

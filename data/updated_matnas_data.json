@@ -1,0 +1,143 @@
+{
+    "main_page": {
+        "title": "ברוכים הבאים למתנ\"ס",
+        "description": "היי, ברוכים הבאים למתנ\"ס העמק, באיזה עניין פניתם?",
+        "background_color": "#ffffff",
+        "images": [
+            "main_image1.png",
+            "main_image2.jpeg",
+            "main_image3.jpeg",
+            "main_image4.jpeg",
+            "main_image5.jpeg"
+        ],
+        "videos": []
+    },
+    "main_buttons": [
+        {
+            "name": "בריכה",
+            "key": "pool"
+        },
+        {
+            "name": "אירועים והופעות",
+            "key": "events"
+        },
+        {
+            "name": "מידע כללי",
+            "key": "general_info"
+        },
+        {
+            "name": "אינדקס עסקים",
+            "key": "business_index"
+        }
+    ],
+    "dialogs": {
+        "pool": {
+            "title": "בריכת השחייה",
+            "description": "ברוכים הבאים לבריכת השחייה שלנו! במה נוכל לעזור לכם?",
+            "background_color": "#e6f3ff",
+            "is_chatbot": true,
+            "system_prompt": "אתה עוזר חכם שתמיד מתנהג כמו נציג שירות מקצועי, אמפתי ומבין.\nעליך לספק תשובות ברורות, מדויקות ומכבדות, תוך גילוי הבנה והכלה לצרכי המשתמש.\nבכל תשובה שלך, הקפד להיות תומך וסבלני, גם כאשר אין לך את כל המידע הנדרש.\nאם לא נמצא מידע רלוונטי לשאלה המבוסס על ההקשר שסופק, עליך להחזיר את ההודעה הבאה:\n\"לא הצלחתי למצוא תשובה לשאלה שלך בהתבסס על המידע הקיים. נסה לשאול שאלה אחרת.\"\nספק תשובות מבוססות על ההקשר שסופק בלבד, תוך שמירה על מקצועיות ושירותיות.",
+            "pdf_file": "pool.pdf",
+            "videos": [],
+            "buttons": [
+                {
+                    "name": "זמני פתיחה",
+                    "key": "pool_opening_hours",
+                    "images": [
+                        "pool_hours.jpeg"
+                    ]
+                },
+                {
+                    "name": "מחירים",
+                    "key": "pool_prices",
+                    "images": [
+                        "pool_prices.jpeg"
+                    ]
+                },
+                {
+                    "name": "גלריה",
+                    "key": "pool_gallery",
+                    "images": [
+                        "pool_gallery1.jpeg",
+                        "pool_gallery2.jpeg",
+                        "pool_gallery3.jpeg",
+                        "pool_gallery4.jpeg"
+                    ]
+                }
+            ]
+        },
+        "events": {
+            "title": "אירועים והופעות",
+            "description": "מה תרצו לדעת על האירועים וההופעות הקרובים שלנו?",
+            "background_color": "#fff0e6",
+            "is_chatbot": true,
+            "system_prompt": "אתה עוזר חכם שתמיד מתנהג כמו נציג שירות מקצועי, אמפתי ומבין.\nעליך לספק תשובות ברורות, מדויקות ומכבדות, תוך גילוי הבנה והכלה לצרכי המשתמש.\nבכל תשובה שלך, הקפד להיות תומך וסבלני, גם כאשר אין לך את כל המידע הנדרש.\nאם לא נמצא מידע רלוונטי לשאלה המבוסס על ההקשר שסופק, עליך להחזיר את ההודעה הבאה:\n\"לא הצלחתי למצוא תשובה לשאלה שלך בהתבסס על המידע הקיים. נסה לשאול שאלה אחרת.\"\nספק תשובות מבוססות על ההקשר שסופק בלבד, תוך שמירה על מקצועיות ושירותיות.",
+            "pdf_file": "events.pdf",
+            "videos": [],
+            "buttons": [
+                {
+                    "name": "לוח אירועים רבעוני",
+                    "key": "events_quarterly_calendar_of",
+                    "images": [
+                        "events_calendar.jpeg"
+                    ]
+                },
+                {
+                    "name": "גלריה",
+                    "key": "events_gallery",
+                    "images": [
+                        "events_gallery1.jpeg",
+                        "events_gallery2.jpeg"
+                    ]
+                }
+            ]
+        },
+        "general_info": {
+            "title": "מידע כללי",
+            "description": "איזה מידע כללי על המתנ\"ס תרצו לקבל?",
+            "background_color": "#e6ffe6",
+            "is_chatbot": true,
+            "system_prompt": "אתה עוזר חכם שתמיד מתנהג כמו נציג שירות מקצועי, אמפתי ומבין.\nעליך לספק תשובות ברורות, מדויקות ומכבדות, תוך גילוי הבנה והכלה לצרכי המשתמש.\nבכל תשובה שלך, הקפד להיות תומך וסבלני, גם כאשר אין לך את כל המידע הנדרש.\nאם לא נמצא מידע רלוונטי לשאלה המבוסס על ההקשר שסופק, עליך להחזיר את ההודעה הבאה:\n\"לא הצלחתי למצוא תשובה לשאלה שלך בהתבסס על המידע הקיים. נסה לשאול שאלה אחרת.\"\nספק תשובות מבוססות על ההקשר שסופק בלבד, תוך שמירה על מקצועיות ושירותיות.",
+            "pdf_file": "general_info.pdf",
+            "videos": [
+                "https://youtu.be/yvW4X9XbMbU"
+            ],
+            "buttons": [
+                {
+                    "name": "טלפונים",
+                    "key": "general_info_phones",
+                    "images": [
+                        "info_phones.jpeg"
+                    ]
+                },
+                {
+                    "name": "מחלקות",
+                    "key": "general_info_departments",
+                    "images": [
+                        "info_departments1.jpeg",
+                        "info_departments2.jpeg"
+                    ]
+                },
+                {
+                    "name": "מפת הגעה",
+                    "key": "general_info_map",
+                    "images": [
+                        "info_map.jpeg"
+                    ]
+                }
+            ]
+        },
+        "business_index": {
+            "title": "אינדקס עסקים",
+            "description": "בוט אינדקס עסקים ",
+            "background_color": "#e0e0ff",
+            "is_chatbot": true,
+            "system_prompt": "אתה עוזר חכם שנועד לעזור למשתמשים למצוא מידע על עסקים ונותני שירות שונים. ענה רק על סמך הנתונים בקובץ המצורף. הצג תמיד את הפרטים הבאים: שם פרטי, שם משפחה, טלפון, תחום עיסוק, שם העסק, כתובת העסק ודואר אלקטרוני. אם אין מידע מתאים, ענה בנימוס: 'סליחה, לא מצאתי את המידע המבוקש בקובץ הנתונים שלי. אפשר לנסות לשאול אחרת?'",
+            "pdf_file": "business_index.pdf",
+            "images": [
+                "business_index1.jpeg"
+            ],
+            "buttons": []
+        }
+    }
+}

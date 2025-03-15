@@ -8,3 +8,4 @@ myenv
 data/user_count.json
 utils/__pycache__/init.cpython-312.pyc
 aviad_chatbot.code-workspace
+*old
