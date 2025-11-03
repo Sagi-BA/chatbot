@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Remove-Item embeddings*.pkl)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

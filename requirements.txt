@@ -1,12 +1,11 @@
-streamlit 
+streamlit
 streamlit-carousel
 streamlit-extras #https://arnaudmiribel.github.io/streamlit-extras/
 python-dotenv
 aiohttp #This is for telegram
 requests
-asyncio
 groq
-openai
+openai>=1.0.0
 PyMuPDF
 numpy
 

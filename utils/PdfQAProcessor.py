@@ -1,5 +1,5 @@
 import fitz  # PyMuPDF
-import openai
+from openai import OpenAI
 import numpy as np
 import os
 import pickle
@@ -22,8 +22,8 @@ class PdfQAProcessor:
         if not self.api_key:
             raise ValueError("OpenAI API key not found. Please add 'OPENAI_API_KEY' to your .env file.")
 
-        # Set the OpenAI API key
-        openai.api_key = self.api_key
+        # Initialize OpenAI client
+        self.openai_client = OpenAI(api_key=self.api_key)
 
         # Set the folders for PDFs and embeddings
         self.data_folder = data_folder
@@ -50,8 +50,8 @@ class PdfQAProcessor:
 
     # Create embedding using OpenAI's API
     def create_embedding(self, text):
-        
-        response = openai.embeddings.create(
+
+        response = self.openai_client.embeddings.create(
             model= self.embeddings_model,
             input=text
         )
@@ -141,7 +141,7 @@ class PdfQAProcessor:
             messages.append({"role": "user", "content": question})
             
             if self.model_type == "chatgpt":
-                response = openai.chat.completions.create(
+                response = self.openai_client.chat.completions.create(
                     model= self.llm_model, #"gpt-4o", #"gpt-4o",  "gpt-4o-mini"# Use GPT-4 or a smaller model if desired sagi
                     messages=messages,
                     max_tokens = self.max_token,  # Adjust based on the answer length you expect
