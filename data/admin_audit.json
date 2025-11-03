@@ -77,6 +77,30 @@
       "event_type": "login_success",
       "username": "admin",
       "details": "User logged in successfully"
+    },
+    {
+      "timestamp": "2025-11-03T18:36:33.345373",
+      "event_type": "dialog_updated",
+      "username": "admin",
+      "details": "Dialog configuration updated"
+    },
+    {
+      "timestamp": "2025-11-03T18:37:44.503604",
+      "event_type": "login_success",
+      "username": "admin",
+      "details": "User logged in successfully"
+    },
+    {
+      "timestamp": "2025-11-03T18:39:27.386748",
+      "event_type": "dialog_updated",
+      "username": "admin",
+      "details": "Dialog configuration updated"
+    },
+    {
+      "timestamp": "2025-11-03T18:44:18.209820",
+      "event_type": "dialog_updated",
+      "username": "admin",
+      "details": "Dialog configuration updated"
     }
   ]
 }

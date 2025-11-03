@@ -17,6 +17,8 @@ from admin.dashboard import render_dashboard
 from admin.main_page_editor import render_main_page_editor
 from admin.buttons_manager import render_buttons_manager
 from admin.dialog_editor import render_dialog_editor
+from admin.media_library import render_media_library
+from admin.global_settings import render_global_settings
 
 
 def load_admin_styles():
@@ -220,11 +222,18 @@ def render_sidebar_navigation():
         if role in ["super_admin", "editor"]:
             nav_options.append("💬 עורך דיאלוגים")
 
-        # Phase 4+ features (coming soon)
+        # Phase 4 features (editors and above)
+        if role in ["super_admin", "editor"]:
+            nav_options.append("📁 ספריית מדיה")
+
+        # Super admin only features
+        if role == "super_admin":
+            nav_options.append("⚙️ הגדרות כלליות")
+
+        # Phase 5+ features (coming soon)
         nav_options.extend([
-            "🤖 הגדרות צ'אטבוט (בקרוב)",
-            "📁 ספריית מדיה (בקרוב)",
-            "⚙️ הגדרות כלליות (בקרוב)"
+            "📊 אנליטיקה (בקרוב)",
+            "📝 יומני מערכת (בקרוב)"
         ])
 
         selected = st.radio("בחר עמוד:", nav_options, key="admin_nav")
@@ -236,7 +245,7 @@ def render_sidebar_navigation():
 
         # Quick info
         st.caption("**מידע מהיר:**")
-        st.caption(f"גרסה: Phase 3.0")
+        st.caption(f"גרסה: Phase 4.0")
         st.caption(f"תאריך: {datetime.now().strftime('%d/%m/%Y')}")
 
         st.divider()
@@ -285,6 +294,10 @@ def render_admin_interface():
         render_buttons_manager()
     elif selected_page == "💬 עורך דיאלוגים":
         render_dialog_editor()
+    elif selected_page == "📁 ספריית מדיה":
+        render_media_library()
+    elif selected_page == "⚙️ הגדרות כלליות":
+        render_global_settings()
     else:
         # Coming soon pages
         st.info(f"⏳ תכונה זו ({selected_page}) תהיה זמינה בשלבים הבאים של הפיתוח.")
@@ -292,11 +305,9 @@ def render_admin_interface():
         st.write("""
         **מה צפוי בשלבים הבאים:**
 
-        - **שלב 4:** הגדרות צ'אטבוט נוספות
-        - **שלב 5:** ספריית מדיה מתקדמת
-        - **שלב 5:** ספריית מדיה
-        - **שלב 6:** הגדרות גלובליות
-        - **שלב 7:** אנליטיקה ומעקב
+        - **שלב 5:** אנליטיקה ומעקב
+        - **שלב 6:** יומני מערכת
+        - **שלב 7:** דוחות ויצוא נתונים
         """)
 
 

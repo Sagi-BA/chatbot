@@ -44,8 +44,7 @@
           "name": "זמני פתיחה",
           "key": "pool_opening_hours",
           "images": [
-            "pool_hours.jpeg",
-            "business_index1.jpeg"
+            "pool_hours.jpeg"
           ]
         },
         {
@@ -132,7 +131,7 @@
     "business_index": {
       "title": "אינדקס עסקים",
       "description": "בוט אינדקס עסקים ",
-      "background_color": "#ffffff",
+      "background_color": "darksalmon",
       "is_chatbot": true,
       "system_prompt": "אתה עוזר חכם שנועד לעזור למשתמשים למצוא מידע על עסקים ונותני שירות שונים. ענה רק על סמך הנתונים בקובץ המצורף. הצג תמיד את הפרטים הבאים: שם פרטי, שם משפחה, טלפון, תחום עיסוק, שם העסק, כתובת העסק ודואר אלקטרוני. אם אין מידע מתאים, ענה בנימוס: 'סליחה, לא מצאתי את המידע המבוקש בקובץ הנתונים שלי. אפשר לנסות לשאול אחרת?'",
       "pdf_file": "business_index.pdf",

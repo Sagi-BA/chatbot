@@ -1,4 +1,4 @@
-# 🚀 Quick Reference Card - Admin Panel Phase 3
+# 🚀 Quick Reference Card - Admin Panel Phase 4
 
 ## 🔗 Access URLs
 
@@ -28,6 +28,8 @@
 | `admin/main_page_editor.py` | Main page editor (Phase 2) |
 | `admin/buttons_manager.py` | Buttons manager (Phase 2) |
 | `admin/dialog_editor.py` | Dialog editor (Phase 3) |
+| `admin/media_library.py` | Media library (Phase 4) |
+| `admin/global_settings.py` | Global settings (Phase 4) |
 | `admin/styles.css` | Hebrew RTL styles |
 | `data/admin_users.json` | User accounts |
 | `data/admin_audit.json` | Audit log |
@@ -59,6 +61,16 @@
 ✅ **Dialog Videos** - Add/remove YouTube URLs per dialog
 ✅ **Sub-buttons Manager** - CRUD operations with image assignment
 ✅ **CSS Color Fix** - Auto-convert color names to hex
+
+### Phase 4 (Complete)
+✅ **Media Library** - Centralized image and PDF management
+✅ **Image Grid View** - Upload, search, rename, delete images
+✅ **PDF List View** - Upload, search, rename, delete PDFs
+✅ **Storage Statistics** - Real-time file counts and sizes
+✅ **Global Settings** - System configuration and maintenance
+✅ **Health Checks** - Orphaned dialog detection
+✅ **Data Sync Tools** - Clean and sync dialogs with buttons
+✅ **Export to JSON** - Download complete configuration
 
 ---
 
@@ -229,6 +241,34 @@ python -c "from admin.auth import hash_password; print('OK')"
 5. Modify name, key, or images
 6. Click "💾 שמור שינויים"
 
+### Phase 4 Tasks
+
+#### Upload Images to Library:
+1. Go to "📁 ספריית מדיה"
+2. Tab "ניהול תמונות"
+3. Click "בחר תמונות להעלאה"
+4. Select multiple images
+5. Click "📤 העלה תמונות"
+
+#### Search and Manage Files:
+1. Go to "📁 ספריית מדיה"
+2. Use search box to filter files
+3. Click "✏️" to rename
+4. Click "🗑️" to delete (with confirmation)
+
+#### Check System Health:
+1. Login as super_admin
+2. Go to "⚙️ הגדרות כלליות"
+3. Tab "סקירה כללית"
+4. Review metrics and health checks
+5. Run quick actions if needed
+
+#### Export Configuration:
+1. Go to "⚙️ הגדרות כלליות"
+2. Tab "מבנה נתונים"
+3. Click "ייצא נתונים ל-JSON"
+4. Click "💾 הורד קובץ JSON"
+
 ---
 
 ## 🐛 Troubleshooting
@@ -281,6 +321,7 @@ python -c "from admin.auth import hash_password; print('OK')"
 | `PHASE1_TESTING_SUMMARY.md` | QA | Phase 1 tests |
 | `PHASE2_DELIVERY.md` | Client | Phase 2 delivery |
 | `PHASE3_DELIVERY.md` | Client | Phase 3 delivery |
+| `PHASE4_DELIVERY.md` | Client | Phase 4 delivery |
 | `ADMIN_QUICKSTART.md` | End Users | Hebrew guide |
 | `admin/README.md` | Developers | Module reference |
 | `QUICK_REFERENCE.md` | Everyone | This file |
@@ -355,17 +396,37 @@ python -c "from admin.auth import hash_password; print('OK')"
 - [x] Can assign images to sub-buttons
 - [x] All changes save with backup
 
+### Phase 4 Checklist:
+- [x] Media library loads
+- [x] Can view storage statistics
+- [x] Can upload multiple images
+- [x] Can search images
+- [x] Can rename images
+- [x] Can delete images
+- [x] Can upload PDFs
+- [x] Can search PDFs
+- [x] Can rename PDFs
+- [x] Can delete PDFs with warning
+- [x] Global settings loads (super_admin)
+- [x] Can view system metrics
+- [x] Health checks run correctly
+- [x] Can export configuration to JSON
+- [x] Can clean orphaned dialogs
+- [x] Can sync buttons and dialogs
+- [x] All operations create backups
+
 ---
 
-## 🔜 Phase 4 Preview
+## 🔜 Phase 5 Preview
 
 Coming next:
-- ✨ Advanced chatbot configuration (embedding models, LLM selection)
-- ✨ Temperature and max tokens settings
-- ✨ Conversation history management
-- ✨ Chatbot testing interface
+- ✨ Advanced analytics and reporting
+- ✨ User activity tracking
+- ✨ System logs viewer
+- ✨ Performance monitoring dashboard
+- ✨ Data import functionality
 
-**Timeline:** 3-4 hours after Phase 3 approval
+**Timeline:** 3-4 hours after Phase 4 approval
 
 ---
 
@@ -395,28 +456,28 @@ Coming next:
 **Phase 1:** ✅ Complete (Auth, Users, Dashboard, Backups)
 **Phase 2:** ✅ Complete (Main Page, Images, Videos, Buttons)
 **Phase 3:** ✅ Complete (Dialog Editor, Sub-buttons, Chatbot Settings)
-**Phase 4:** ⏳ Pending (Advanced Chatbot Config)
-**Phase 5:** ⏳ Pending (Media Library)
-**Phase 6:** ⏳ Pending (Global Settings)
-**Phase 7:** ⏳ Pending (Analytics)
-**Phase 8:** ⏳ Pending (Testing & Docs)
+**Phase 4:** ✅ Complete (Media Library, Global Settings)
+**Phase 5:** ⏳ Pending (Advanced Features)
+**Phase 6:** ⏳ Pending (Analytics)
+**Phase 7:** ⏳ Pending (Additional Tools)
+**Phase 8:** ⏳ Pending (Final Testing & Docs)
 
 ---
 
 ## 🎯 Quick Facts
 
-**Total Lines of Code:** ~4,000+
-**Files Created:** 14
-**Tests Passed:** 91/91 (100%)
-**Development Time:** ~17 hours
-**Documentation Pages:** 8
+**Total Lines of Code:** ~4,800+
+**Files Created:** 16
+**Tests Passed:** 98/98 (100%)
+**Development Time:** ~20 hours
+**Documentation Pages:** 9
 **Supported Languages:** Hebrew + English
 **Security Rating:** ⭐⭐⭐⭐⭐
-**Phases Complete:** 3 of 8
+**Phases Complete:** 4 of 8
 **Dialogs Managed:** 4 (pool, events, general_info, business_index)
 
 ---
 
 **Keep this file handy for quick reference!**
 
-*Last Updated: November 4, 2025*
+*Last Updated: November 3, 2025*
