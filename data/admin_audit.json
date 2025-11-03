@@ -65,6 +65,18 @@
       "event_type": "login_success",
       "username": "admin",
       "details": "User logged in successfully"
+    },
+    {
+      "timestamp": "2025-11-03T18:00:45.281020",
+      "event_type": "main_page_updated",
+      "username": "admin",
+      "details": "Main page configuration updated"
+    },
+    {
+      "timestamp": "2025-11-03T18:07:28.325268",
+      "event_type": "login_success",
+      "username": "admin",
+      "details": "User logged in successfully"
     }
   ]
 }

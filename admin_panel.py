@@ -16,6 +16,7 @@ from admin.users import create_initial_super_admin, render_user_management
 from admin.dashboard import render_dashboard
 from admin.main_page_editor import render_main_page_editor
 from admin.buttons_manager import render_buttons_manager
+from admin.dialog_editor import render_dialog_editor
 
 
 def load_admin_styles():
@@ -215,12 +216,15 @@ def render_sidebar_navigation():
                 "🔘 כפתורים ראשיים"
             ])
 
-        # Phase 3+ features (coming soon)
+        # Phase 3 features (editors and above)
+        if role in ["super_admin", "editor"]:
+            nav_options.append("💬 עורך דיאלוגים")
+
+        # Phase 4+ features (coming soon)
         nav_options.extend([
-            "💬 דיאלוגים (בקרוב)",
-            "🤖 צ'אטבוט (בקרוב)",
-            "📁 מדיה (בקרוב)",
-            "⚙️ הגדרות (בקרוב)"
+            "🤖 הגדרות צ'אטבוט (בקרוב)",
+            "📁 ספריית מדיה (בקרוב)",
+            "⚙️ הגדרות כלליות (בקרוב)"
         ])
 
         selected = st.radio("בחר עמוד:", nav_options, key="admin_nav")
@@ -232,7 +236,7 @@ def render_sidebar_navigation():
 
         # Quick info
         st.caption("**מידע מהיר:**")
-        st.caption(f"גרסה: Phase 2.0")
+        st.caption(f"גרסה: Phase 3.0")
         st.caption(f"תאריך: {datetime.now().strftime('%d/%m/%Y')}")
 
         st.divider()
@@ -279,6 +283,8 @@ def render_admin_interface():
         render_main_page_editor()
     elif selected_page == "🔘 כפתורים ראשיים":
         render_buttons_manager()
+    elif selected_page == "💬 עורך דיאלוגים":
+        render_dialog_editor()
     else:
         # Coming soon pages
         st.info(f"⏳ תכונה זו ({selected_page}) תהיה זמינה בשלבים הבאים של הפיתוח.")
@@ -286,8 +292,8 @@ def render_admin_interface():
         st.write("""
         **מה צפוי בשלבים הבאים:**
 
-        - **שלב 3:** ניהול דיאלוגים ותתי-כפתורים
-        - **שלב 4:** הגדרות צ'אטבוט והעלאת PDFs
+        - **שלב 4:** הגדרות צ'אטבוט נוספות
+        - **שלב 5:** ספריית מדיה מתקדמת
         - **שלב 5:** ספריית מדיה
         - **שלב 6:** הגדרות גלובליות
         - **שלב 7:** אנליטיקה ומעקב
