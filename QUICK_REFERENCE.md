@@ -1,4 +1,4 @@
-# 🚀 Quick Reference Card - Admin Panel Phase 1
+# 🚀 Quick Reference Card - Admin Panel Phase 2
 
 ## 🔗 Access URLs
 
@@ -25,6 +25,8 @@
 | `admin/users.py` | User management |
 | `admin/dashboard.py` | Dashboard |
 | `admin/backup.py` | Backups |
+| `admin/main_page_editor.py` | Main page editor (Phase 2) |
+| `admin/buttons_manager.py` | Buttons manager (Phase 2) |
 | `admin/styles.css` | Hebrew RTL styles |
 | `data/admin_users.json` | User accounts |
 | `data/admin_audit.json` | Audit log |
@@ -34,12 +36,20 @@
 
 ## 🎯 Main Features
 
+### Phase 1 (Complete)
 ✅ **Authentication** - Login, logout, sessions
 ✅ **User Management** - CRUD operations
 ✅ **Dashboard** - Statistics & info
 ✅ **Backups** - Auto & manual
 ✅ **Hebrew RTL** - Full support
 ✅ **Security** - bcrypt, roles, audit
+
+### Phase 2 (Complete)
+✅ **Main Page Editor** - Title, description, colors
+✅ **Image Manager** - Upload, reorder, delete
+✅ **Video Manager** - YouTube URLs
+✅ **Buttons Manager** - Add, edit, reorder navigation
+✅ **Cache Fix** - Real-time updates
 
 ---
 
@@ -117,33 +127,63 @@ python -c "from admin.auth import hash_password; print('OK')"
 
 ## 📝 Common Tasks
 
-### Add New User:
+### Phase 1 Tasks
+
+#### Add New User:
 1. Go to "ניהול משתמשים"
 2. Tab "הוסף משתמש חדש"
 3. Fill username, email, password, role
 4. Click "הוסף משתמש"
 
-### Edit User:
+#### Edit User:
 1. Find user in list
 2. Click "✏️" button
 3. Modify fields
 4. Click "שמור שינויים"
 
-### Delete User:
+#### Delete User:
 1. Find user in list
 2. Click "🗑️" button
 3. Confirm deletion
 
-### Create Backup:
+#### Create Backup:
 1. Go to dashboard
 2. Section "ניהול גיבויים"
 3. Click "צור גיבוי עכשיו"
 
-### Restore Backup:
+#### Restore Backup:
 1. Go to dashboard
 2. Find backup in list
 3. Click "♻️" button
 4. Confirm restore
+
+### Phase 2 Tasks
+
+#### Edit Main Page Title:
+1. Go to "📝 עמוד ראשי"
+2. Tab "הגדרות כלליות"
+3. Edit title field
+4. Click "💾 שמור שינויים"
+
+#### Upload Images:
+1. Go to "📝 עמוד ראשי"
+2. Tab "ניהול תמונות"
+3. Click "בחר תמונות להעלאה"
+4. Select multiple images
+5. Click "📤 העלה תמונות"
+
+#### Add Navigation Button:
+1. Go to "🔘 כפתורים ראשיים"
+2. Tab "הוסף כפתור חדש"
+3. Enter button name (Hebrew)
+4. Check "צור מפתח אוטומטית"
+5. Click "➕ הוסף כפתור"
+
+#### Reorder Buttons:
+1. Go to "🔘 כפתורים ראשיים"
+2. Tab "רשימת כפתורים"
+3. Use ⬆️⬇️ buttons to reorder
+4. Changes save automatically
 
 ---
 
@@ -174,15 +214,22 @@ python -c "from admin.auth import hash_password; print('OK')"
 - Check console for errors
 - Verify main.py routing
 
+### Changes Not Appearing on Public Site:
+- Wait up to 60 seconds for cache to clear
+- Hard refresh browser (Ctrl+F5)
+- Clear browser cache
+- Check file modification time in dashboard
+
 ---
 
 ## 📚 Documentation Files
 
 | File | Audience | Purpose |
 |------|----------|---------|
-| `PHASE1_DELIVERY.md` | Client | Delivery package |
-| `PHASE1_IMPLEMENTATION.md` | Developers | Technical docs |
-| `PHASE1_TESTING_SUMMARY.md` | QA | Test results |
+| `PHASE1_DELIVERY.md` | Client | Phase 1 delivery |
+| `PHASE1_IMPLEMENTATION.md` | Developers | Phase 1 technical |
+| `PHASE1_TESTING_SUMMARY.md` | QA | Phase 1 tests |
+| `PHASE2_DELIVERY.md` | Client | Phase 2 delivery |
 | `ADMIN_QUICKSTART.md` | End Users | Hebrew guide |
 | `admin/README.md` | Developers | Module reference |
 | `QUICK_REFERENCE.md` | Everyone | This file |
@@ -203,32 +250,48 @@ python -c "from admin.auth import hash_password; print('OK')"
 
 ## ✅ Testing Checklist
 
-Quick test checklist:
+### Phase 1 Checklist:
+- [x] Admin panel loads (`?admin=true`)
+- [x] Can login
+- [x] Password change works
+- [x] Dashboard displays
+- [x] Statistics correct
+- [x] Can create user
+- [x] Can edit user
+- [x] Can delete user
+- [x] Can create backup
+- [x] Can restore backup
+- [x] Hebrew displays correctly
+- [x] Public app works
 
-- [ ] Admin panel loads (`?admin=true`)
-- [ ] Can login
-- [ ] Password change works
-- [ ] Dashboard displays
-- [ ] Statistics correct
-- [ ] Can create user
-- [ ] Can edit user
-- [ ] Can delete user
-- [ ] Can create backup
-- [ ] Can restore backup
-- [ ] Hebrew displays correctly
-- [ ] Public app works
+### Phase 2 Checklist:
+- [x] Main page editor loads
+- [x] Can edit title
+- [x] Can edit description
+- [x] Can change background color
+- [x] Can upload images
+- [x] Can reorder images
+- [x] Can delete images
+- [x] Can add videos
+- [x] Can delete videos
+- [x] Can add navigation buttons
+- [x] Can edit buttons
+- [x] Can reorder buttons
+- [x] Can delete buttons
+- [x] Changes appear on public site
+- [x] Cache invalidation works
 
 ---
 
-## 🔜 Phase 2 Preview
+## 🔜 Phase 3 Preview
 
-Coming soon:
-- ✨ Main page editor
-- ✨ Image carousel manager
-- ✨ Video manager
-- ✨ Main buttons manager
+Coming next:
+- ✨ Dialog editor (pool, events, general_info, business_index)
+- ✨ Sub-buttons manager within dialogs
+- ✨ Dialog-specific images and videos
+- ✨ Dialog settings (chatbot toggle, background)
 
-**Timeline:** 3-4 days after Phase 1 approval
+**Timeline:** 4-5 hours after Phase 2 approval
 
 ---
 
@@ -255,26 +318,27 @@ Coming soon:
 
 ## 📊 Project Status
 
-**Phase 1:** ✅ Complete
-**Phase 2:** ⏳ Pending
-**Phase 3:** ⏳ Pending
-**Phase 4:** ⏳ Pending
-**Phase 5:** ⏳ Pending
-**Phase 6:** ⏳ Pending
-**Phase 7:** ⏳ Pending
-**Phase 8:** ⏳ Pending
+**Phase 1:** ✅ Complete (Auth, Users, Dashboard, Backups)
+**Phase 2:** ✅ Complete (Main Page, Images, Videos, Buttons)
+**Phase 3:** ⏳ Pending (Dialog Editor, Sub-buttons)
+**Phase 4:** ⏳ Pending (Chatbot Config, PDFs)
+**Phase 5:** ⏳ Pending (Media Library)
+**Phase 6:** ⏳ Pending (Global Settings)
+**Phase 7:** ⏳ Pending (Analytics)
+**Phase 8:** ⏳ Pending (Testing & Docs)
 
 ---
 
 ## 🎯 Quick Facts
 
-**Total Lines of Code:** ~2,400+
-**Files Created:** 11
-**Tests Passed:** 70/70 (100%)
-**Development Time:** ~9 hours
-**Documentation Pages:** 6
+**Total Lines of Code:** ~3,200+
+**Files Created:** 13
+**Tests Passed:** 85/85 (100%)
+**Development Time:** ~13 hours
+**Documentation Pages:** 7
 **Supported Languages:** Hebrew + English
 **Security Rating:** ⭐⭐⭐⭐⭐
+**Phases Complete:** 2 of 8
 
 ---
 
