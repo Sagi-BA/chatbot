@@ -1,0 +1,336 @@
+/* Admin Panel Styles - RTL Hebrew Support */
+
+/* Global RTL Layout */
+.admin-container {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Hebrew Font Priority */
+body, .stApp, .main, .sidebar {
+    font-family: 'Heebo', 'Rubik', Arial, sans-serif !important;
+    direction: rtl;
+}
+
+/* Text Inputs - Right Aligned */
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div > div,
+.stNumberInput > div > div > input {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Form Labels */
+.stTextInput > label,
+.stTextArea > label,
+.stSelectbox > label,
+.stNumberInput > label,
+.stCheckbox > label {
+    text-align: right;
+    direction: rtl;
+}
+
+/* Buttons */
+.stButton > button {
+    font-family: 'Heebo', 'Rubik', Arial, sans-serif;
+    direction: rtl;
+}
+
+/* Sidebar Navigation */
+.css-1d391kg, [data-testid="stSidebar"] {
+    direction: rtl;
+}
+
+.sidebar .sidebar-content {
+    text-align: right;
+}
+
+/* Radio Buttons */
+.stRadio > div {
+    direction: rtl;
+    text-align: right;
+}
+
+.stRadio > div > label {
+    direction: rtl;
+}
+
+/* Tables and DataFrames */
+.dataframe {
+    direction: rtl;
+}
+
+.dataframe th,
+.dataframe td {
+    text-align: right;
+}
+
+/* Metrics */
+.css-1xarl3l {
+    direction: rtl;
+    text-align: right;
+}
+
+[data-testid="stMetricValue"] {
+    direction: ltr;  /* Keep numbers LTR */
+    text-align: left;
+}
+
+/* Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    direction: rtl;
+}
+
+.stTabs [data-baseweb="tab"] {
+    direction: rtl;
+}
+
+/* Expanders */
+.streamlit-expanderHeader {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Containers */
+.element-container {
+    direction: rtl;
+}
+
+/* Success/Error/Warning Messages */
+.stSuccess, .stError, .stWarning, .stInfo {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Form Containers */
+.stForm {
+    direction: rtl;
+}
+
+/* Column Headers */
+.stColumn {
+    direction: rtl;
+}
+
+/* Password Strength Progress Bar */
+.stProgress > div > div > div > div {
+    direction: ltr;  /* Progress bars should be LTR */
+}
+
+/* Custom Metric Cards */
+.metric-card {
+    background-color: #f0f2f6;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: right;
+    direction: rtl;
+    border: 1px solid #e0e0e0;
+}
+
+.metric-card h3 {
+    margin: 0;
+    font-size: 2em;
+    color: #1f77b4;
+}
+
+.metric-card p {
+    margin: 5px 0 0 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Login Page Styling */
+.login-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    direction: rtl;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #1f77b4;
+}
+
+/* User List Table */
+.user-list-item {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    direction: rtl;
+}
+
+.user-list-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Backup List */
+.backup-item {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    direction: rtl;
+}
+
+.backup-item:last-child {
+    border-bottom: none;
+}
+
+/* Session Warning */
+.session-warning {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff3cd;
+    color: #856404;
+    padding: 15px 30px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Hide Streamlit Branding */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 10px;
+    }
+
+    .metric-card {
+        padding: 15px;
+    }
+
+    .login-container {
+        max-width: 90%;
+        margin: 20px auto;
+        padding: 20px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .stButton, .stDownloadButton {
+        display: none;
+    }
+
+    body {
+        direction: rtl;
+    }
+}
+
+/* Accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Focus States */
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+    outline: 2px solid #1f77b4;
+    outline-offset: 2px;
+}
+
+/* Loading Spinner */
+.stSpinner > div {
+    direction: ltr;  /* Spinner should rotate correctly */
+}
+
+/* Header with User Info */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    direction: rtl;
+}
+
+.user-info {
+    text-align: left;
+    direction: rtl;
+}
+
+/* Dividers */
+hr {
+    margin: 20px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* Card Containers */
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+    margin-bottom: 20px;
+    direction: rtl;
+}
+
+/* Status Badges */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    font-weight: 500;
+}
+
+.badge-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.badge-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.badge-warning {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}

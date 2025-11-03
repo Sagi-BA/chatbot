@@ -11,6 +11,13 @@ from utils.PdfQAProcessor import PdfQAProcessor
 from utils.counter import initialize_user_count, increment_user_count, get_user_count
 from utils.init import initialize
 
+# Check if admin panel is requested via query parameters
+query_params = st.query_params
+if query_params.get("admin") in ["true", "True", True]:
+    from admin_panel import run_admin_panel
+    run_admin_panel()
+    st.stop()  # Stop execution of public app
+
 # Initialize session state
 if 'state' not in st.session_state:
     st.session_state.state = {        

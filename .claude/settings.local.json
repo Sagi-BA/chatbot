@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(Remove-Item embeddings*.pkl)"
+      "Bash(tree:*)",
+      "Bash(mkdir:*)",
+      "Bash(pip install:*)",
+      "Bash(=4.0.1 -q)",
+      "Bash(python:*)"
     ],
     "deny": [],
     "ask": []

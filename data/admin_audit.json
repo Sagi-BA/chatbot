@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "timestamp": "2025-11-03T17:17:17.784691",
+      "event_type": "user_created",
+      "username": "system",
+      "details": "Initial super admin created"
+    },
+    {
+      "timestamp": "2025-11-03T17:18:31.368004",
+      "event_type": "login_failed",
+      "username": "admin",
+      "details": "Failed login attempt"
+    },
+    {
+      "timestamp": "2025-11-03T17:24:18.750079",
+      "event_type": "login_success",
+      "username": "admin",
+      "details": "User logged in successfully"
+    },
+    {
+      "timestamp": "2025-11-03T17:24:36.884094",
+      "event_type": "password_changed",
+      "username": "admin",
+      "details": "Password changed for user ID: cf7d862f-daad-47c9-997c-7df632a958ad"
+    },
+    {
+      "timestamp": "2025-11-03T17:24:36.904987",
+      "event_type": "password_changed",
+      "username": "admin",
+      "details": "Initial password changed"
+    },
+    {
+      "timestamp": "2025-11-03T17:25:08.346403",
+      "event_type": "logout",
+      "username": "admin",
+      "details": "User logged out"
+    },
+    {
+      "timestamp": "2025-11-03T17:25:29.801340",
+      "event_type": "login_success",
+      "username": "admin",
+      "details": "User logged in successfully"
+    }
+  ]
+}

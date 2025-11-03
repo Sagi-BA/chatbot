@@ -8,6 +8,7 @@ groq
 openai>=1.0.0
 PyMuPDF
 numpy
+bcrypt>=4.0.1
 
 
 # Summary:
