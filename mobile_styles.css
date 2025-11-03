@@ -1,0 +1,522 @@
+/* Mobile-Responsive Styles for Matnas Chatbot */
+/* Hebrew RTL Support + Mobile Optimization */
+
+/* ========================================
+   BASE RESPONSIVE CONFIGURATION
+   ======================================== */
+
+/* Set viewport for proper mobile scaling */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* ========================================
+   GENERAL MOBILE OPTIMIZATIONS
+   ======================================== */
+
+/* Ensure proper box-sizing for all elements */
+* {
+    box-sizing: border-box;
+}
+
+/* Make main container responsive */
+.main .block-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 100px !important; /* Space for fixed chat input */
+    max-width: 100% !important;
+}
+
+/* Remove default Streamlit padding on mobile */
+@media (max-width: 768px) {
+    .main .block-container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+        padding-top: 0.5rem !important;
+    }
+}
+
+/* ========================================
+   HEBREW RTL SUPPORT (Mobile)
+   ======================================== */
+
+/* Ensure RTL direction for Hebrew text */
+.main, .stMarkdown, .stText, p, h1, h2, h3, h4, h5, h6 {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Chat messages RTL */
+.stChatMessage {
+    direction: rtl;
+    text-align: right;
+}
+
+.stChatMessage p {
+    direction: rtl;
+    text-align: right;
+}
+
+/* ========================================
+   MOBILE BUTTONS
+   ======================================== */
+
+/* Make all buttons full-width on mobile */
+@media (max-width: 768px) {
+    .stButton > button {
+        width: 100% !important;
+        padding: 15px !important;
+        font-size: 18px !important;
+        height: auto !important;
+        white-space: normal !important;
+        line-height: 1.4 !important;
+    }
+}
+
+/* Button text wrapping */
+.stButton > button {
+    white-space: normal !important;
+    word-wrap: break-word !important;
+}
+
+/* Ensure buttons are touchable (min 44px height) */
+.stButton > button {
+    min-height: 44px !important;
+    touch-action: manipulation;
+}
+
+/* ========================================
+   MOBILE CHAT INTERFACE
+   ======================================== */
+
+/* Fixed chat input at bottom */
+.stChatFloatingInputContainer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    background-color: white !important;
+    padding: 10px !important;
+    z-index: 1000 !important;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1) !important;
+    direction: rtl !important;
+}
+
+/* Chat input styling for mobile */
+@media (max-width: 768px) {
+    .stChatFloatingInputContainer {
+        padding: 8px !important;
+    }
+
+    .stChatFloatingInputContainer textarea {
+        font-size: 16px !important; /* Prevent zoom on iOS */
+        min-height: 44px !important;
+        direction: rtl !important;
+    }
+}
+
+/* Chat message bubbles responsive */
+.stChatMessage {
+    max-width: 100% !important;
+    padding: 12px !important;
+    margin-bottom: 10px !important;
+}
+
+@media (max-width: 768px) {
+    .stChatMessage {
+        padding: 10px !important;
+        font-size: 15px !important;
+    }
+}
+
+/* ========================================
+   MOBILE IMAGES & CAROUSEL
+   ======================================== */
+
+/* Responsive images */
+img {
+    max-width: 100% !important;
+    height: auto !important;
+}
+
+/* Carousel responsive */
+.carousel {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+    .carousel {
+        height: auto !important;
+    }
+
+    .carousel img {
+        max-height: 300px !important;
+        object-fit: contain !important;
+    }
+}
+
+/* ========================================
+   MOBILE COLUMNS
+   ======================================== */
+
+/* Stack columns vertically on mobile */
+@media (max-width: 768px) {
+    .row-widget.stHorizontalBlock {
+        flex-direction: column !important;
+    }
+
+    .row-widget.stHorizontalBlock > div {
+        width: 100% !important;
+        margin-bottom: 1rem !important;
+    }
+}
+
+/* ========================================
+   MOBILE TYPOGRAPHY
+   ======================================== */
+
+/* Responsive font sizes */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    h2 {
+        font-size: 1.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.3rem !important;
+    }
+
+    p, div, span {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+    }
+}
+
+/* Prevent text from being too small */
+body {
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* ========================================
+   MOBILE FORM INPUTS
+   ======================================== */
+
+/* All form inputs responsive */
+input, textarea, select {
+    width: 100% !important;
+    font-size: 16px !important; /* Prevent zoom on iOS */
+    padding: 12px !important;
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+@media (max-width: 768px) {
+    input, textarea, select {
+        padding: 10px !important;
+    }
+}
+
+/* ========================================
+   MOBILE NAVIGATION
+   ======================================== */
+
+/* Sidebar responsive (if used) */
+@media (max-width: 768px) {
+    [data-testid="stSidebar"] {
+        width: 100% !important;
+    }
+
+    [data-testid="stSidebarNav"] {
+        max-width: 100% !important;
+    }
+}
+
+/* ========================================
+   MOBILE VIDEO EMBEDDING
+   ======================================== */
+
+/* Responsive video containers */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* YouTube iframe responsive */
+iframe {
+    max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+    iframe {
+        height: 250px !important;
+    }
+}
+
+/* ========================================
+   MOBILE TABLES
+   ======================================== */
+
+/* Responsive tables */
+@media (max-width: 768px) {
+    table {
+        display: block !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
+    }
+}
+
+/* ========================================
+   MOBILE CONTAINERS & CARDS
+   ======================================== */
+
+/* Stylable containers responsive */
+.stylable-container {
+    padding: 15px !important;
+    margin-bottom: 10px !important;
+}
+
+@media (max-width: 768px) {
+    .stylable-container {
+        padding: 10px !important;
+    }
+}
+
+/* ========================================
+   MOBILE SCROLLING
+   ======================================== */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Prevent horizontal scroll */
+body, .main {
+    overflow-x: hidden !important;
+}
+
+/* ========================================
+   MOBILE TOUCH OPTIMIZATION
+   ======================================== */
+
+/* Larger touch targets */
+a, button, [role="button"] {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    touch-action: manipulation;
+}
+
+/* Remove tap highlight on mobile */
+button, a, input, textarea {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ========================================
+   MOBILE LOADING SPINNERS
+   ======================================== */
+
+/* Loading spinner responsive */
+.stSpinner {
+    text-align: center !important;
+}
+
+@media (max-width: 768px) {
+    .stSpinner > div {
+        width: 40px !important;
+        height: 40px !important;
+    }
+}
+
+/* ========================================
+   MOBILE ALERTS & MESSAGES
+   ======================================== */
+
+/* Alert boxes responsive */
+.stAlert {
+    padding: 12px !important;
+    margin-bottom: 10px !important;
+}
+
+@media (max-width: 768px) {
+    .stAlert {
+        padding: 10px !important;
+        font-size: 14px !important;
+    }
+}
+
+/* ========================================
+   MOBILE SPECIFIC FIXES
+   ======================================== */
+
+/* Fix for iOS Safari address bar */
+@supports (-webkit-touch-callout: none) {
+    .main .block-container {
+        min-height: -webkit-fill-available !important;
+    }
+}
+
+/* Fix for Android Chrome */
+@media screen and (max-width: 768px) {
+    .main {
+        min-height: 100vh !important;
+        min-height: -webkit-fill-available !important;
+    }
+}
+
+/* ========================================
+   MOBILE DOWNLOAD BUTTONS
+   ======================================== */
+
+/* PDF download button responsive */
+@media (max-width: 768px) {
+    a[href*="data:application/pdf"] {
+        padding: 12px 15px !important;
+        font-size: 15px !important;
+        display: block !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+
+    a[href*="data:application/pdf"] svg {
+        width: 24px !important;
+        height: 24px !important;
+    }
+
+    a[href*="data:application/pdf"] span {
+        font-size: 15px !important;
+    }
+}
+
+/* ========================================
+   MOBILE EXPANDERS
+   ======================================== */
+
+/* Expander headers responsive */
+.streamlit-expanderHeader {
+    font-size: 16px !important;
+    padding: 12px !important;
+    direction: rtl !important;
+}
+
+@media (max-width: 768px) {
+    .streamlit-expanderHeader {
+        font-size: 15px !important;
+        padding: 10px !important;
+    }
+}
+
+/* ========================================
+   MOBILE METRICS
+   ======================================== */
+
+/* Metric cards responsive */
+@media (max-width: 768px) {
+    [data-testid="stMetric"] {
+        padding: 10px !important;
+    }
+
+    [data-testid="stMetricLabel"] {
+        font-size: 14px !important;
+    }
+
+    [data-testid="stMetricValue"] {
+        font-size: 24px !important;
+    }
+}
+
+/* ========================================
+   LANDSCAPE MOBILE OPTIMIZATION
+   ======================================== */
+
+/* Landscape mode adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .main .block-container {
+        padding-top: 0.5rem !important;
+    }
+
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .stChatMessage {
+        padding: 8px !important;
+    }
+}
+
+/* ========================================
+   VERY SMALL SCREENS (< 375px)
+   ======================================== */
+
+@media (max-width: 375px) {
+    .main .block-container {
+        padding-left: 0.3rem !important;
+        padding-right: 0.3rem !important;
+    }
+
+    h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .stButton > button {
+        font-size: 16px !important;
+        padding: 12px !important;
+    }
+}
+
+/* ========================================
+   PRINT STYLES (Optional)
+   ======================================== */
+
+@media print {
+    .stChatFloatingInputContainer {
+        display: none !important;
+    }
+
+    .stButton {
+        display: none !important;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY (Mobile)
+   ======================================== */
+
+/* Ensure focus visible on mobile */
+button:focus, a:focus, input:focus, textarea:focus {
+    outline: 2px solid #007bff !important;
+    outline-offset: 2px !important;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    button, a {
+        border: 2px solid currentColor !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

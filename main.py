@@ -45,9 +45,24 @@ def load_data(_file_mtime):
         return {}
 
 def set_page_config():
-    st.set_page_config(page_title="צ'אטבוט המתנ\"ס", layout="wide")
+    st.set_page_config(
+        page_title="צ'אטבוט המתנ\"ס",
+        layout="wide",
+        initial_sidebar_state="collapsed",  # Better for mobile
+        menu_items={
+            'Get Help': None,
+            'Report a bug': None,
+            'About': None
+        }
+    )
     hide_streamlit_header_footer()
-    
+    load_mobile_styles()
+
+    # Mobile viewport meta tag
+    st.markdown("""
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    """, unsafe_allow_html=True)
+
     # הוספת CSS לקיבוע ה-chat_input בתחתית
     st.markdown("""
         <style>
@@ -75,6 +90,34 @@ def hide_streamlit_header_footer():
         #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
         </style>
     """, unsafe_allow_html=True)
+
+def load_mobile_styles():
+    """Load mobile-responsive CSS styles."""
+    try:
+        with open('mobile_styles.css', 'r', encoding='utf-8') as f:
+            mobile_css = f.read()
+        st.markdown(f'<style>{mobile_css}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Fallback inline mobile styles if file not found
+        st.markdown("""
+            <style>
+            /* Mobile responsive fallback */
+            @media (max-width: 768px) {
+                .main .block-container {
+                    padding-left: 0.5rem !important;
+                    padding-right: 0.5rem !important;
+                }
+                .stButton > button {
+                    width: 100% !important;
+                    font-size: 18px !important;
+                    padding: 15px !important;
+                }
+                input, textarea {
+                    font-size: 16px !important;
+                }
+            }
+            </style>
+        """, unsafe_allow_html=True)
 
 def set_background_color(color):
     st.markdown(f"""

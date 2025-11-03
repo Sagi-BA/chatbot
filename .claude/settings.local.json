@@ -5,7 +5,9 @@
       "Bash(mkdir:*)",
       "Bash(pip install:*)",
       "Bash(=4.0.1 -q)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(nul)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []
