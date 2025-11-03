@@ -1,4 +1,4 @@
-# 🚀 Quick Reference Card - Admin Panel Phase 2
+# 🚀 Quick Reference Card - Admin Panel Phase 3
 
 ## 🔗 Access URLs
 
@@ -27,6 +27,7 @@
 | `admin/backup.py` | Backups |
 | `admin/main_page_editor.py` | Main page editor (Phase 2) |
 | `admin/buttons_manager.py` | Buttons manager (Phase 2) |
+| `admin/dialog_editor.py` | Dialog editor (Phase 3) |
 | `admin/styles.css` | Hebrew RTL styles |
 | `data/admin_users.json` | User accounts |
 | `data/admin_audit.json` | Audit log |
@@ -50,6 +51,14 @@
 ✅ **Video Manager** - YouTube URLs
 ✅ **Buttons Manager** - Add, edit, reorder navigation
 ✅ **Cache Fix** - Real-time updates
+
+### Phase 3 (Complete)
+✅ **Dialog Editor** - Edit all 4 dialogs (pool, events, general_info, business_index)
+✅ **Chatbot Settings** - System prompts, PDF selection, enable/disable
+✅ **Dialog Images** - Upload, reorder, delete per dialog
+✅ **Dialog Videos** - Add/remove YouTube URLs per dialog
+✅ **Sub-buttons Manager** - CRUD operations with image assignment
+✅ **CSS Color Fix** - Auto-convert color names to hex
 
 ---
 
@@ -185,6 +194,41 @@ python -c "from admin.auth import hash_password; print('OK')"
 3. Use ⬆️⬇️ buttons to reorder
 4. Changes save automatically
 
+### Phase 3 Tasks
+
+#### Edit Dialog Settings:
+1. Go to "💬 עורך דיאלוגים"
+2. Select dialog from dropdown (pool, events, general_info, business_index)
+3. Tab "הגדרות כלליות"
+4. Edit title, description, or background color
+5. Click "💾 שמור שינויים"
+
+#### Configure Chatbot:
+1. Go to "💬 עורך דיאלוגים"
+2. Select dialog
+3. Tab "הגדרות צ'אטבוט"
+4. Toggle chatbot enable/disable
+5. Edit system prompt
+6. Select PDF file
+7. Click "💾 שמור שינויים"
+
+#### Add Sub-button:
+1. Go to "💬 עורך דיאלוגים"
+2. Select dialog
+3. Tab "כפתורי משנה"
+4. Tab "הוסף כפתור"
+5. Enter name and key
+6. Select images (multiselect)
+7. Click "➕ הוסף כפתור"
+
+#### Edit Sub-button:
+1. Go to "💬 עורך דיאלוגים"
+2. Select dialog
+3. Tab "כפתורי משנה" → "רשימת כפתורים"
+4. Click "✏️" on button to edit
+5. Modify name, key, or images
+6. Click "💾 שמור שינויים"
+
 ---
 
 ## 🐛 Troubleshooting
@@ -220,6 +264,12 @@ python -c "from admin.auth import hash_password; print('OK')"
 - Clear browser cache
 - Check file modification time in dashboard
 
+### Dialog Editor Shows Error (CSS Color):
+- Check if background_color uses CSS name (like "darksalmon")
+- Edit dialog and change color using color picker
+- Save with hex format (like #E9967A)
+- Color will auto-convert on next load
+
 ---
 
 ## 📚 Documentation Files
@@ -230,6 +280,7 @@ python -c "from admin.auth import hash_password; print('OK')"
 | `PHASE1_IMPLEMENTATION.md` | Developers | Phase 1 technical |
 | `PHASE1_TESTING_SUMMARY.md` | QA | Phase 1 tests |
 | `PHASE2_DELIVERY.md` | Client | Phase 2 delivery |
+| `PHASE3_DELIVERY.md` | Client | Phase 3 delivery |
 | `ADMIN_QUICKSTART.md` | End Users | Hebrew guide |
 | `admin/README.md` | Developers | Module reference |
 | `QUICK_REFERENCE.md` | Everyone | This file |
@@ -281,17 +332,40 @@ python -c "from admin.auth import hash_password; print('OK')"
 - [x] Changes appear on public site
 - [x] Cache invalidation works
 
+### Phase 3 Checklist:
+- [x] Dialog editor loads
+- [x] Can select all 4 dialogs
+- [x] Can edit dialog title
+- [x] Can edit dialog description
+- [x] Can change dialog background color
+- [x] CSS colors auto-convert to hex
+- [x] Can toggle chatbot enable/disable
+- [x] Can edit system prompt
+- [x] Can select PDF file
+- [x] Can upload new PDF
+- [x] Can upload dialog images
+- [x] Can reorder dialog images
+- [x] Can delete dialog images
+- [x] Can add dialog videos
+- [x] Can delete dialog videos
+- [x] Can add sub-buttons
+- [x] Can edit sub-buttons
+- [x] Can reorder sub-buttons
+- [x] Can delete sub-buttons
+- [x] Can assign images to sub-buttons
+- [x] All changes save with backup
+
 ---
 
-## 🔜 Phase 3 Preview
+## 🔜 Phase 4 Preview
 
 Coming next:
-- ✨ Dialog editor (pool, events, general_info, business_index)
-- ✨ Sub-buttons manager within dialogs
-- ✨ Dialog-specific images and videos
-- ✨ Dialog settings (chatbot toggle, background)
+- ✨ Advanced chatbot configuration (embedding models, LLM selection)
+- ✨ Temperature and max tokens settings
+- ✨ Conversation history management
+- ✨ Chatbot testing interface
 
-**Timeline:** 4-5 hours after Phase 2 approval
+**Timeline:** 3-4 hours after Phase 3 approval
 
 ---
 
@@ -320,8 +394,8 @@ Coming next:
 
 **Phase 1:** ✅ Complete (Auth, Users, Dashboard, Backups)
 **Phase 2:** ✅ Complete (Main Page, Images, Videos, Buttons)
-**Phase 3:** ⏳ Pending (Dialog Editor, Sub-buttons)
-**Phase 4:** ⏳ Pending (Chatbot Config, PDFs)
+**Phase 3:** ✅ Complete (Dialog Editor, Sub-buttons, Chatbot Settings)
+**Phase 4:** ⏳ Pending (Advanced Chatbot Config)
 **Phase 5:** ⏳ Pending (Media Library)
 **Phase 6:** ⏳ Pending (Global Settings)
 **Phase 7:** ⏳ Pending (Analytics)
@@ -331,14 +405,15 @@ Coming next:
 
 ## 🎯 Quick Facts
 
-**Total Lines of Code:** ~3,200+
-**Files Created:** 13
-**Tests Passed:** 85/85 (100%)
-**Development Time:** ~13 hours
-**Documentation Pages:** 7
+**Total Lines of Code:** ~4,000+
+**Files Created:** 14
+**Tests Passed:** 91/91 (100%)
+**Development Time:** ~17 hours
+**Documentation Pages:** 8
 **Supported Languages:** Hebrew + English
 **Security Rating:** ⭐⭐⭐⭐⭐
-**Phases Complete:** 2 of 8
+**Phases Complete:** 3 of 8
+**Dialogs Managed:** 4 (pool, events, general_info, business_index)
 
 ---
 
