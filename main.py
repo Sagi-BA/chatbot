@@ -57,15 +57,62 @@ def set_page_config():
     )
     hide_streamlit_header_footer()
     load_mobile_styles()
+    load_desktop_styles()  # Load desktop optimizations
 
     # Mobile viewport meta tag
     st.markdown("""
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     """, unsafe_allow_html=True)
 
-    # הוספת CSS לקיבוע ה-chat_input בתחתית
+    # הוספת CSS לקיבוע ה-chat_input בתחתית והסרת spacing עליון
     st.markdown("""
         <style>
+        /* הסרת כל ה-padding והמרווחים מלמעלה */
+        .main > div {
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+        }
+
+        .block-container {
+            padding-top: 0 !important;
+            margin-top: 0 !important;
+        }
+
+        /* הסרת margin מהאלמנט הראשון */
+        .main .block-container > div:first-child {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        /* הסתרת אלמנטים ריקים */
+        div.stElementContainer:empty {
+            display: none !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        .element-container:empty {
+            display: none !important;
+            height: 0 !important;
+            min-height: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* הסרת spacing מכל ה-stElementContainer */
+        .stElementContainer {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        .stElementContainer:first-child {
+            margin-top: 0 !important;
+            padding-top: 0 !important;
+        }
+
+        /* קיבוע chat input בתחתית */
         .stChatFloatingInputContainer {
             position: fixed;
             bottom: 0;
@@ -75,6 +122,7 @@ def set_page_config():
             padding: 10px;
             z-index: 1000;
         }
+
         .main .block-container {
             padding-bottom: 80px;  /* מרווח קטן כדי למנוע חפיפה עם ה-input */
         }
@@ -115,6 +163,29 @@ def load_mobile_styles():
                 input, textarea {
                     font-size: 16px !important;
                 }
+            }
+            </style>
+        """, unsafe_allow_html=True)
+
+def load_desktop_styles():
+    """Load desktop-optimized CSS styles for better fit without scrolling."""
+    try:
+        with open('desktop_styles.css', 'r', encoding='utf-8') as f:
+            desktop_css = f.read()
+        st.markdown(f'<style>{desktop_css}</style>', unsafe_allow_html=True)
+    except FileNotFoundError:
+        # Fallback inline desktop styles if file not found
+        st.markdown("""
+            <style>
+            /* Desktop optimization fallback */
+            @media (min-width: 769px) {
+                h1 { font-size: 2rem !important; margin: 0.5rem 0 !important; }
+                h2 { font-size: 1.4rem !important; margin: 0.5rem 0 !important; }
+                .custom-expander { padding: 12px !important; margin-bottom: 12px !important; }
+                .custom-expander label { font-size: 18px !important; }
+                .expander-content { font-size: 14px !important; line-height: 1.4 !important; }
+                .stButton > button { padding: 10px 20px !important; font-size: 16px !important; }
+                img { max-height: 400px !important; object-fit: contain !important; }
             }
             </style>
         """, unsafe_allow_html=True)

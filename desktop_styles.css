@@ -1,0 +1,527 @@
+/* Desktop Optimization Styles - Fix Layout to Fit Without Scrolling */
+
+/* ========================================
+   REMOVE TOP SPACING (ALL SCREENS)
+   ======================================== */
+
+/* הסרת כל ה-padding העליון - Apply to all screens */
+.main > div {
+    padding-top: 0 !important;
+}
+
+.block-container {
+    padding-top: 0 !important;
+}
+
+/* הסרת margin מהאלמנט הראשון */
+.main .block-container > div:first-child {
+    margin-top: 0 !important;
+}
+
+/* Remove top spacing from main */
+.main {
+    padding-top: 0 !important;
+}
+
+/* הסתרת אלמנטים ריקים בראש הדף */
+div.stElementContainer:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* אופציונלי: הסתרה גורפת של אלמנטים ריקים בכל הדף */
+.element-container:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Target specific Streamlit emotion cache containers */
+.st-emotion-cache-17lr0tt:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Hide all empty divs in the main container */
+.main div:empty {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Specifically target first few element containers to remove spacing */
+.element-container:nth-child(1),
+.element-container:nth-child(2),
+.element-container:nth-child(3) {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* Remove spacing from stElementContainer divs */
+.stElementContainer {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.stElementContainer:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+/* ========================================
+   DESKTOP LAYOUT OPTIMIZATION
+   ======================================== */
+
+/* Optimize desktop container - fit content without scrolling */
+@media (min-width: 769px) {
+    .main .block-container {
+        max-width: 1400px !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        padding-top: 0rem !important; /* Remove top padding */
+        padding-bottom: 2rem !important;
+    }
+
+    /* Reduce overall page height */
+    .stApp {
+        max-height: 100vh !important;
+        overflow-y: auto !important;
+    }
+}
+
+/* ========================================
+   TITLE AND HEADER OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Main title - reduce size and remove top margin */
+    h1 {
+        font-size: 2rem !important; /* Reduced from default ~3rem */
+        margin-top: 0rem !important; /* Remove top margin */
+        margin-bottom: 0.5rem !important;
+        line-height: 1.2 !important;
+        padding-top: 0 !important;
+    }
+
+    /* Subheaders - reduce size */
+    h2 {
+        font-size: 1.4rem !important; /* Reduced from default ~2rem */
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    h3 {
+        font-size: 1.2rem !important;
+        margin-top: 0.4rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+}
+
+/* ========================================
+   EXPANDER (ABOUT SECTION) OPTIMIZATION
+   ======================================== */
+
+/* Fix expander sizes for desktop */
+.custom-expander {
+    background-color: #f0f8ff;
+    border-radius: 8px !important; /* Reduced from 10px */
+    padding: 12px !important; /* Reduced from 20px */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important; /* Smaller shadow */
+    margin-bottom: 12px !important; /* Reduced from 20px */
+}
+
+.custom-expander label {
+    color: #1e90ff;
+    font-size: 18px !important; /* Reduced from 24px */
+    text-align: center;
+    margin-bottom: 8px !important; /* Reduced from 15px */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    display: block;
+}
+
+.expander-content {
+    font-size: 14px !important; /* Reduced from 26px */
+    line-height: 1.4 !important; /* Reduced from 1.6 */
+    color: #000000;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.expander-toggle:checked + label + .expander-content {
+    max-height: 600px !important; /* Reduced from 1000px */
+}
+
+.expander-content p {
+    margin-bottom: 6px !important; /* Reduced from 10px */
+    font-size: 14px !important;
+}
+
+.expander-content h2 {
+    font-size: 16px !important; /* Much smaller for collapsed section */
+    margin-top: 8px !important;
+    margin-bottom: 6px !important;
+}
+
+.expander-content ol,
+.expander-content ul {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+    padding-right: 20px !important; /* RTL support */
+    font-size: 14px !important;
+}
+
+.expander-content li {
+    margin-bottom: 4px !important;
+    font-size: 14px !important;
+}
+
+/* Social media badges - smaller */
+.expander-content img {
+    height: 24px !important; /* Reduced badge height */
+    margin: 2px !important;
+}
+
+/* ========================================
+   BUTTON OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    .stButton > button {
+        padding: 10px 20px !important; /* Reduced from default */
+        font-size: 16px !important; /* Reasonable desktop size */
+        height: auto !important;
+        min-height: 40px !important;
+        white-space: normal !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Button containers - reduce spacing */
+    .row-widget.stHorizontalBlock {
+        gap: 0.5rem !important;
+    }
+}
+
+/* ========================================
+   CONTENT SPACING OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Reduce paragraph spacing */
+    p {
+        margin-bottom: 0.5rem !important;
+        font-size: 15px !important;
+    }
+
+    /* Reduce divider spacing */
+    hr {
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Markdown spacing */
+    .stMarkdown {
+        margin-bottom: 0.5rem !important;
+    }
+}
+
+/* ========================================
+   CHAT INTERFACE OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Chat input - optimize for desktop */
+    .stChatFloatingInputContainer {
+        position: fixed !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        background-color: white !important;
+        padding: 8px !important; /* Reduced from 10px */
+        z-index: 1000 !important;
+        box-shadow: 0 -2px 8px rgba(0,0,0,0.1) !important;
+    }
+
+    /* Chat messages - compact */
+    .stChatMessage {
+        padding: 8px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .stChatMessage p {
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+        margin-bottom: 0.3rem !important;
+    }
+}
+
+/* ========================================
+   IMAGE AND CAROUSEL OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Limit image heights to prevent overflow */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 400px !important; /* Prevent huge images */
+        object-fit: contain !important;
+    }
+
+    /* Carousel optimization */
+    .carousel {
+        max-height: 400px !important;
+    }
+
+    .carousel img {
+        max-height: 400px !important;
+        object-fit: contain !important;
+    }
+
+    /* Centered images in expander */
+    .centered-image {
+        width: 200px !important; /* Reduced from 300px */
+        max-height: 200px !important;
+        display: block;
+        margin: 12px auto !important; /* Reduced from 20px */
+    }
+}
+
+/* ========================================
+   VIDEO OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    video {
+        max-height: 400px !important;
+        width: auto !important;
+        max-width: 100% !important;
+    }
+
+    /* Video container */
+    .stVideo {
+        max-height: 400px !important;
+    }
+}
+
+/* ========================================
+   PDF DOWNLOAD BUTTON (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* PDF download button styling */
+    a[download] {
+        text-decoration: none;
+        color: black;
+        background-color: #f0f0f0;
+        padding: 10px 20px !important; /* Reduced from 15px 25px */
+        border-radius: 6px !important; /* Reduced from 8px */
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid #ddd;
+        font-size: 14px !important; /* Reduced from 16px */
+        transition: all 0.3s;
+        margin-bottom: 0.5rem !important;
+    }
+
+    a[download] svg {
+        width: 24px !important; /* Reduced from 32px */
+        height: 24px !important;
+    }
+
+    a[download]:hover {
+        background-color: #e0e0e0;
+        transform: translateY(-2px);
+    }
+}
+
+/* ========================================
+   FOOTER OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* User count footer */
+    .user-count {
+        font-size: 14px !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Footer content */
+    footer {
+        padding: 0.5rem !important;
+        font-size: 13px !important;
+    }
+}
+
+/* ========================================
+   COLUMNS AND GRID OPTIMIZATION (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Optimize column spacing */
+    .row-widget.stHorizontalBlock {
+        gap: 1rem !important;
+    }
+
+    .row-widget.stHorizontalBlock > div {
+        flex: 1;
+        min-width: 0; /* Prevent overflow */
+    }
+}
+
+/* ========================================
+   SCROLLBAR STYLING (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Custom scrollbar for better UX */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+/* ========================================
+   PREVENT OVERFLOW (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Ensure nothing overflows */
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden !important;
+    }
+
+    .main {
+        overflow-x: hidden !important;
+    }
+}
+
+/* ========================================
+   COMPACT MODE FOR DESKTOP
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Reduce all vertical spacing */
+    .element-container {
+        margin-bottom: 0.5rem !important;
+    }
+
+    /* Streamlit spacing reduction */
+    .block-container {
+        gap: 0.5rem !important;
+    }
+
+    /* Section spacing */
+    section {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+}
+
+/* ========================================
+   SPECIFIC PAGE ELEMENTS (Desktop)
+   ======================================== */
+
+@media (min-width: 769px) {
+    /* Main page title adjustment */
+    [data-testid="stHeader"] {
+        display: none !important; /* Hide Streamlit default header */
+    }
+
+    /* Hide excessive whitespace */
+    .stApp > header {
+        display: none !important;
+    }
+
+    /* Remove all top padding */
+    #root > div:nth-child(1) > div > div > div > div > section > div {
+        padding-top: 0rem !important;
+    }
+
+    /* Remove section top padding */
+    section.main {
+        padding-top: 0 !important;
+    }
+
+    /* Remove element container top spacing */
+    .element-container:first-child {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+}
+
+/* ========================================
+   HEBREW RTL SUPPORT (Desktop)
+   ======================================== */
+
+/* Ensure RTL works on desktop */
+.main, .stMarkdown, .stText, p, h1, h2, h3, h4, h5, h6 {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.stChatMessage {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+.stChatMessage p {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINT ADJUSTMENTS
+   ======================================== */
+
+/* Large desktops (1920px+) - ensure content doesn't get too spread out */
+@media (min-width: 1920px) {
+    .main .block-container {
+        max-width: 1600px !important;
+        margin: 0 auto !important;
+    }
+}
+
+/* Tablets and small desktops (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main .block-container {
+        max-width: 100% !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    h1 {
+        font-size: 1.8rem !important;
+    }
+
+    h2 {
+        font-size: 1.3rem !important;
+    }
+}
