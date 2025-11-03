@@ -25,8 +25,15 @@ if 'state' not in st.session_state:
     }
 
 # קונפיגורציה והגדרות
-@st.cache_data(show_spinner=False, ttl=None)
-def load_data():
+def get_file_hash():
+    """Get file modification time for cache invalidation."""
+    try:
+        return os.path.getmtime('matnas_data.json')
+    except:
+        return None
+
+@st.cache_data(show_spinner=False, ttl=60, hash_funcs={type(get_file_hash()): lambda x: x})
+def load_data(_file_mtime):
     try:
         with open('matnas_data.json', 'r', encoding='utf-8') as f:
             return json.load(f)
@@ -245,7 +252,7 @@ async def main():
         st.session_state.chat_histories = {}
 
     set_page_config()
-    data = load_data()    
+    data = load_data(get_file_hash())
     title, image_path, footer_content = initialize()
 
     st.title(title, anchor=None, help="נוצר על ידי שגיא בר און")

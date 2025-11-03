@@ -1,7 +1,7 @@
 {
   "main_page": {
-    "title": "ברוכים הבאים למיצגים בתערוכות",
-    "description": "היי, ברוכים הבאים למיצגים בתערוכות, באיזה עניין פניתם?",
+    "title": "ברוכים הבאים למתנ\"ס",
+    "description": "היי, ברוכים הבאים למתנ\"ס העמק, באיזה עניין פניתם?",
     "background_color": "#ffffff",
     "images": [
       "main_image1.png",
@@ -43,16 +43,12 @@
         {
           "name": "זמני פתיחה",
           "key": "pool_opening_hours",
-          "images": [
-            "pool_hours.jpeg"
-          ]
+          "images": ["pool_hours.jpeg"]
         },
         {
           "name": "מחירים",
           "key": "pool_prices",
-          "images": [
-            "pool_prices.jpeg"
-          ]
+          "images": ["pool_prices.jpeg"]
         },
         {
           "name": "גלריה",
@@ -78,17 +74,12 @@
         {
           "name": "לוח אירועים רבעוני",
           "key": "events_quarterly_calendar_of",
-          "images": [
-            "events_calendar.jpeg"
-          ]
+          "images": ["events_calendar.jpeg"]
         },
         {
           "name": "גלריה",
           "key": "events_gallery",
-          "images": [
-            "events_gallery1.jpeg",
-            "events_gallery2.jpeg"
-          ]
+          "images": ["events_gallery1.jpeg", "events_gallery2.jpeg"]
         }
       ]
     },
@@ -99,31 +90,22 @@
       "is_chatbot": true,
       "system_prompt": "אתה עוזר חכם שתמיד מתנהג כמו נציג שירות מקצועי, אמפתי ומבין.\nעליך לספק תשובות ברורות, מדויקות ומכבדות, תוך גילוי הבנה והכלה לצרכי המשתמש.\nבכל תשובה שלך, הקפד להיות תומך וסבלני, גם כאשר אין לך את כל המידע הנדרש.\nאם לא נמצא מידע רלוונטי לשאלה המבוסס על ההקשר שסופק, עליך להחזיר את ההודעה הבאה:\n\"לא הצלחתי למצוא תשובה לשאלה שלך בהתבסס על המידע הקיים. נסה לשאול שאלה אחרת.\"\nספק תשובות מבוססות על ההקשר שסופק בלבד, תוך שמירה על מקצועיות ושירותיות.",
       "pdf_file": "general_info.pdf",
-      "videos": [
-        "https://youtu.be/yvW4X9XbMbU"
-      ],
+      "videos": ["https://youtu.be/yvW4X9XbMbU"],
       "buttons": [
         {
           "name": "טלפונים",
           "key": "general_info_phones",
-          "images": [
-            "info_phones.jpeg"
-          ]
+          "images": ["info_phones.jpeg"]
         },
         {
           "name": "מחלקות",
           "key": "general_info_departments",
-          "images": [
-            "info_departments1.jpeg",
-            "info_departments2.jpeg"
-          ]
+          "images": ["info_departments1.jpeg", "info_departments2.jpeg"]
         },
         {
           "name": "מפת הגעה",
           "key": "general_info_map",
-          "images": [
-            "info_map.jpeg"
-          ]
+          "images": ["info_map.jpeg"]
         }
       ]
     },
@@ -133,10 +115,8 @@
       "background_color": "darksalmon",
       "is_chatbot": true,
       "system_prompt": "אתה עוזר חכם שנועד לעזור למשתמשים למצוא מידע על עסקים ונותני שירות שונים. ענה רק על סמך הנתונים בקובץ המצורף. הצג תמיד את הפרטים הבאים: שם פרטי, שם משפחה, טלפון, תחום עיסוק, שם העסק, כתובת העסק ודואר אלקטרוני. אם אין מידע מתאים, ענה בנימוס: 'סליחה, לא מצאתי את המידע המבוקש בקובץ הנתונים שלי. אפשר לנסות לשאול אחרת?'",
-      "pdf_file": "business_index.pdf",
-      "images": [
-        "business_index1.jpeg"
-      ],
+      "pdf_file": "business_index.pdf",  
+      "images": ["business_index1.jpeg"],
       "buttons": []
     }
   }

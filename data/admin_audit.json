@@ -41,6 +41,30 @@
       "event_type": "login_success",
       "username": "admin",
       "details": "User logged in successfully"
+    },
+    {
+      "timestamp": "2025-11-03T17:35:14.525569",
+      "event_type": "login_success",
+      "username": "admin",
+      "details": "User logged in successfully"
+    },
+    {
+      "timestamp": "2025-11-03T17:41:55.046544",
+      "event_type": "main_page_updated",
+      "username": "admin",
+      "details": "Main page configuration updated"
+    },
+    {
+      "timestamp": "2025-11-03T17:49:00.514313",
+      "event_type": "main_page_updated",
+      "username": "admin",
+      "details": "Main page configuration updated"
+    },
+    {
+      "timestamp": "2025-11-03T17:50:57.465512",
+      "event_type": "login_success",
+      "username": "admin",
+      "details": "User logged in successfully"
     }
   ]
 }
